@@ -1,0 +1,8 @@
+<%= simple_form_for(@term, :html => {:class => 'form-vertical' }) do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors @term %>
+  <%= f.input :description, :autofocus => true %>
+  <%= f.input :keywords, :required => true %>
+  <%= f.button :submit, 'Save', :class => 'btn-primary' %>
+<% end %>
+
