@@ -49,4 +49,6 @@ class User
   validates_presence_of :name
   attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
+
+  has_many :terms
 end
