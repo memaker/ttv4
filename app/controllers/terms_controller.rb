@@ -43,6 +43,7 @@ class TermsController < ApplicationController
   def create
     @term = Term.new(params[:term])
     @term.user = current_user
+    
     respond_to do |format|
       if @term.save
         format.html { redirect_to @term, notice: 'Term was successfully created.' }

@@ -51,4 +51,5 @@ class User
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
 
   has_many :terms
+  has_many :searches
 end

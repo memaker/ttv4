@@ -25,6 +25,10 @@ class SearchesController < ApplicationController
   # GET /searches/new.json
   def new
     @search = Search.new
+    
+    # Roberto. This is to add the related user
+    user = User.find(params[:id])
+    user.searches.push(@search)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -57,7 +61,13 @@ class SearchesController < ApplicationController
   # PUT /searches/1.json
   def update
     @search = Search.find(params[:id])
-
+      
+    # Roberto. This is to add the related user
+    #@search.user = User.find(:id => "51ed2b48d8c6cd23ca000002")
+    user = User.where(email: "rob2@mail.com")
+    @search.user = user.id
+    #@search.user = User.where(email: "rob2@mail.com")
+    
     respond_to do |format|
       if @search.update_attributes(params[:search])
         format.html { redirect_to @search, notice: 'Search was successfully updated.' }
