@@ -2,7 +2,8 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Search.all
+    # @searches = Search.all
+    @searches = Search.where(user: current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,10 +26,6 @@ class SearchesController < ApplicationController
   # GET /searches/new.json
   def new
     @search = Search.new
-    
-    # Roberto. This is to add the related user
-    user = User.find(params[:id])
-    user.searches.push(@search)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,6 +43,9 @@ class SearchesController < ApplicationController
   def create
     @search = Search.new(params[:search])
 
+    # Roberto 2013-07-23. This is to add the related user
+    @search.user = current_user.id
+
     respond_to do |format|
       if @search.save
         format.html { redirect_to @search, notice: 'Search was successfully created.' }
@@ -62,12 +62,9 @@ class SearchesController < ApplicationController
   def update
     @search = Search.find(params[:id])
       
-    # Roberto. This is to add the related user
-    #@search.user = User.find(:id => "51ed2b48d8c6cd23ca000002")
-    user = User.where(email: "rob2@mail.com")
-    @search.user = user.id
-    #@search.user = User.where(email: "rob2@mail.com")
-    
+    # Roberto 2013-07-23. This is to add the related user
+    @search.user = current_user.id
+      
     respond_to do |format|
       if @search.update_attributes(params[:search])
         format.html { redirect_to @search, notice: 'Search was successfully updated.' }

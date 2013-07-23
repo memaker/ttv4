@@ -2,8 +2,7 @@
 class Search
   include Mongoid::Document
   
-  field :body, :type => String
+  field :body, type: String
 
-  # Relationships.
   belongs_to :user
 end
