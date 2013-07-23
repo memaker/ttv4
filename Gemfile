@@ -14,6 +14,7 @@ gem 'libv8'
 gem 'mongoid'
 gem 'rolify'
 gem 'simple_form'
+gem 'sidekiq'
 group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform=>:ruby, :require=>"v8"
