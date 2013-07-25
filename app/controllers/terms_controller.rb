@@ -3,7 +3,6 @@ class TermsController < ApplicationController
   # GET /terms.json
   def index
     @terms = Term.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @terms }
@@ -13,13 +12,15 @@ class TermsController < ApplicationController
   # GET /terms/1
   # GET /terms/1.json
   def show
-#    @term = Term.find(params[:id])
-#
-#    respond_to do |format|
-#      format.html # show.html.erb
-#      format.json { render json: @term }
-#    end
-    redirect_to terms_path
+    @term = Term.find(params[:id])
+    search = TwitterSearch.new
+    search.perform(@term)
+    #TwitterSearch.perform(@term)
+    @tweets = @term.tweets
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @term }
+    end
   end
 
   # GET /terms/new

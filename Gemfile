@@ -15,6 +15,7 @@ gem 'mongoid'
 gem 'rolify'
 gem 'simple_form'
 gem 'sidekiq'
+gem 'twitter'
 group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform=>:ruby, :require=>"v8"
@@ -22,7 +23,7 @@ group :assets do
 end
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
+  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx, :mri_20]
   gem 'hub', :require=>nil
   gem 'quiet_assets'
 end

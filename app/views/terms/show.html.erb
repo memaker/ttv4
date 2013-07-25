@@ -1,0 +1,36 @@
+<h2> Twitter search term </h2>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Keywords</th>
+<th>Last search </th>
+</tr>
+<tr>
+<td><%= @term.description %></td> 
+<td><%= @term.keywords%></td>
+<td><%= @term.searched_at %></td>
+</tr>
+</table>
+
+<% if @tweets %>
+  <table>
+  <tr>
+<th>User</th>
+<th>id</th>
+<th>Text</th>
+<th>lang</th>
+<th>retweeted</th>
+  </tr>
+  <% @tweets.each do |tweet|%>
+
+<tr>
+<td><%=tweet.user %></td>
+<td><%= tweet.id %></td>
+<td><%= tweet.text %></td> 
+<td><%= tweet.lang %></td> 
+<td><%= tweet.retweeted %></td>
+  </tr>
+  <%end%>
+  </table>
+<%end%>

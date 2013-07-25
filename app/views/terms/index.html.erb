@@ -21,7 +21,7 @@
         <% @terms.each do |term| %>
           <tr>
           <!--            <td><%= link_to term.user.email, term %></td> -->
-          <td><%= term.description %></td>
+          <td><%= link_to term.description, term %></td>
           <td><%= term.keywords %></td>
           <td><%= term.created_at.to_date %></td>
           <td>
