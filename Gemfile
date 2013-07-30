@@ -16,6 +16,7 @@ gem 'rolify'
 gem 'simple_form'
 gem 'sidekiq'
 gem 'twitter'
+gem "sexmachine" # get gender from firstname
 group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform=>:ruby, :require=>"v8"
@@ -23,7 +24,7 @@ group :assets do
 end
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx, :mri_20]
+  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
   gem 'hub', :require=>nil
   gem 'quiet_assets'
 end

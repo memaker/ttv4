@@ -10,7 +10,6 @@
       <table class="table table-condensed">
         <thead>
           <tr>
-            <!--  <th>Username</th> -->
             <th>Description</th>
             <th>Keywords</th>
             <th>Creation date</th>
@@ -20,7 +19,6 @@
         <tbody>
         <% @terms.each do |term| %>
           <tr>
-          <!--            <td><%= link_to term.user.email, term %></td> -->
           <td><%= link_to term.description, term %></td>
           <td><%= term.keywords %></td>
           <td><%= term.created_at.to_date %></td>
