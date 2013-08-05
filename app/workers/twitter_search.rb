@@ -1,4 +1,5 @@
 require 'twitter'
+require 'sexmachine'
 require 'pp'
 
 class TwitterSearch
@@ -19,7 +20,6 @@ class TwitterSearch
       
       # gender calculation
       data[:gender] = sex_machine.get_gender(status.user.name.split(" ").first)
-        data[:gender] = 'male'
         
       tweet = Tweet.new(data)
       tweet.save!

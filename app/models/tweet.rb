@@ -7,8 +7,9 @@ class Tweet
   field :user, :type => Integer
   field :geo, :type => String
   field :retweeted, :type => Boolean
+  field :gender, :type =>  String
 
-  attr_accessible :id, :term_id, :text, :lang, :user, :geo, :retweeted, :created_at, :updated_at
+  attr_accessible :id, :term_id, :text, :lang, :user, :geo, :retweeted, :gender, :created_at, :updated_at
 
   belongs_to :term
 end
