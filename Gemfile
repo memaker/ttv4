@@ -14,9 +14,10 @@ gem 'libv8'
 gem 'mongoid'
 gem 'rolify'
 gem 'simple_form'
-gem 'sidekiq'
+#gem 'sidekiq'
 gem 'twitter'
 gem "sexmachine" # get gender from firstname
+gem 'rufus-scheduler'
 group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform=>:ruby, :require=>"v8"
@@ -27,6 +28,8 @@ group :development do
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
   gem 'hub', :require=>nil
   gem 'quiet_assets'
+  gem 'pry-rails'
+  gem 'awesome_print'
 end
 group :development, :test do
   gem 'factory_girl_rails'
