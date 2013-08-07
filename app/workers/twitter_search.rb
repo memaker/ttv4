@@ -1,19 +1,15 @@
 require 'twitter'
-#require 'awesome_print'
 
 class TwitterSearch
-  #include Sidekiq::Worker
 
   def initialize
     # gem to calculate the gender
     @gender_detector = SexMachine::Detector.new(:case_sensitive => false)  
-    @search_interval = 30 
   end
 
   def perform()
     Term.all.asc(:searched_at).each do |term|
       options = {:result_type => "recent"}
-      #ptions = {}
       options.merge(term.last_id.nil? ? {} : {:since_id => term.last_id})
       search = Twitter.search(term.keywords, options)
 
@@ -56,9 +52,6 @@ class TwitterSearch
       retry
     rescue Twitter::Error => error
       puts  error.backtrace
-
-    else
-      
     end
   end
 

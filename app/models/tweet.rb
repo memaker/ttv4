@@ -23,6 +23,6 @@ class Tweet
 
   attr_protected
   #attr_accessible :id, :term_id, :text, :lang, :user, :geo, :retweeted, :created_at, :updated_at
-
+  
   belongs_to :term
 end
