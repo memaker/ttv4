@@ -1,6 +1,6 @@
 <h2> Twitter search term </h2>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Description</th>
     <th>Keywords</th>
@@ -14,7 +14,7 @@
 </table>
 
 <% if @tweets %>
-  <table>
+  <table class="table table-striped">
   <tr>
 <th>User</th>
 <th>id</th>
@@ -25,11 +25,11 @@
   <% @tweets.each do |tweet|%>
 
 <tr>
-<td><%=tweet.user %></td>
+<td><%=tweet.username %></td>
 <td><%= tweet.id %></td>
 <td><%= tweet.text %></td> 
 <td><%= tweet.lang %></td> 
-<td><%= tweet.retweeted %></td>
+<td><%= tweet.retweet_count %></td>
   </tr>
   <%end%>
   </table>

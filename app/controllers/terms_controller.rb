@@ -13,9 +13,6 @@ class TermsController < ApplicationController
   # GET /terms/1.json
   def show
     @term = Term.find(params[:id])
-    search = TwitterSearch.new
-    search.perform(@term)
-    #TwitterSearch.perform(@term)
     @tweets = @term.tweets
     respond_to do |format|
       format.html # show.html.erb
