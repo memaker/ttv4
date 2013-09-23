@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-#ruby '1.9.3'
+
 gem 'rails', '3.2.12'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -18,6 +18,7 @@ gem 'simple_form'
 gem 'twitter'
 gem "sexmachine" # get gender from firstname
 gem 'rufus-scheduler'
+gem 'rails_12factor' # Heroku recommended to add this gem
 group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform=>:ruby, :require=>"v8"
@@ -44,3 +45,4 @@ group :test do
   gem 'mongoid-rspec'
   gem 'minitest'
 end
+ruby '1.9.3' # Heroku recommeded this

@@ -78,3 +78,7 @@ test:
         # low amounts for fast failures.
         max_retries: 1
         retry_interval: 0
+production:
+  sessions:
+    default:
+      uri: mongodb://twitteruser:demopass@ds049157.mongolab.com:49157/ttv4
