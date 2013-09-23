@@ -77,5 +77,8 @@ module Ttv4
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # Roberto 2013-09-23 for Heroku https://devcenter.heroku.com/articles/getting-started-with-rails3
+    config.assets.initialize_on_precompile = false
   end
 end
