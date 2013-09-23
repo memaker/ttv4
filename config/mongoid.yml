@@ -81,4 +81,5 @@ test:
 production:
   sessions:
     default:
-      uri: mongodb://twitteruser:demopass@ds049157.mongolab.com:49157/ttv4
+      uri: mongodb://twitteruser:demopass@ds047458.mongolab.com:47458/ttv4
+      
