@@ -23,29 +23,32 @@ class TwitterSearch
 
   def save(status, term)
     begin
-      tweet = Tweet.new
-      tweet.name = status.user.name
-      tweet.username = status.user.name
-      tweet.user_id = status.user.id
-      tweet.lang = status.lang
-      tweet.country_code = status.place.country_code if status.place
-      #  tweet.geo_enabled = status.user.geo_enabled
-      #  tweet.coordinates = status.geo.coordinates unless tweet.geo.nil?
-      tweet.location = status.user.location
-      tweet.text = status.text
-      tweet.hashtags = status.hashtags.map{|hashtag| hashtag.text}
-      tweet.links = status.urls.map{ |url| url.url}
-      tweet.retweet_count = status.retweet_count
-      tweet.in_reply_to_screen_name = status.in_reply_to_screen_name
-      tweet.favorited = status.favorited 
-      tweet.followers = status.user.followers_count
-      tweet.friends = status.user.friends_count
-
-      # gender calculation
-      tweet.gender = @gender_detector.get_gender(status.user.name.split(" ").first)
-      tweet.tweeted_at = status.created_at
-      tweet.term = term
-      tweet.save
+      # tweets on Spanish only
+      if status.lang == 'es'
+        tweet = Tweet.new
+        tweet.name = status.user.name
+        tweet.username = status.user.name
+        tweet.user_id = status.user.id
+        tweet.lang = status.lang
+        tweet.country_code = status.place.country_code if status.place
+        #  tweet.geo_enabled = status.user.geo_enabled
+        #  tweet.coordinates = status.geo.coordinates unless tweet.geo.nil?
+        tweet.location = status.user.location
+        tweet.text = status.text
+        tweet.hashtags = status.hashtags.map{|hashtag| hashtag.text}
+        tweet.links = status.urls.map{ |url| url.url}
+        tweet.retweet_count = status.retweet_count
+        tweet.in_reply_to_screen_name = status.in_reply_to_screen_name
+        tweet.favorited = status.favorited 
+        tweet.followers = status.user.followers_count
+        tweet.friends = status.user.friends_count
+  
+        # gender calculation
+        tweet.gender = @gender_detector.get_gender(status.user.name.split(" ").first)
+        tweet.tweeted_at = status.created_at
+        tweet.term = term
+        tweet.save
+      end
     rescue Twitter::Error::TooManyRequests => error
       puts error.backtrace
       sleep error.rate_limit.reset_in
