@@ -72,6 +72,11 @@ class TermsController < ApplicationController
   # DELETE /terms/1.json
   def destroy
     @term = Term.find(params[:id])
+      
+    ## it also deletes the associated tweets
+    @tweets = @term.tweets
+    @tweets.destroy_all
+
     @term.destroy
 
     respond_to do |format|
