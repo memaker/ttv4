@@ -11,6 +11,8 @@ class TwitterSearch
     Term.all.asc(:searched_at).each do |term|
       options = {:result_type => "recent"}
       options.merge(term.last_id.nil? ? {} : {:since_id => term.last_id})
+      # tweets on Spanish only
+      options.merge({:lang => 'es'})
       search = Twitter.search(term.keywords, options)
 
       Rails.logger.info "Searching for terms #{term.description} with #{search.results.size.to_s} results."
@@ -23,8 +25,6 @@ class TwitterSearch
 
   def save(status, term)
     begin
-      # tweets on Spanish only
-      if status.lang == 'es'
         tweet = Tweet.new
         tweet.name = status.user.name
         tweet.username = status.user.name
@@ -42,13 +42,11 @@ class TwitterSearch
         tweet.favorited = status.favorited 
         tweet.followers = status.user.followers_count
         tweet.friends = status.user.friends_count
-  
         # gender calculation
         tweet.gender = @gender_detector.get_gender(status.user.name.split(" ").first)
         tweet.tweeted_at = status.created_at
         tweet.term = term
         tweet.save
-      end
     rescue Twitter::Error::TooManyRequests => error
       puts error.backtrace
       sleep error.rate_limit.reset_in
