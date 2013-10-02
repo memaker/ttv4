@@ -2,7 +2,10 @@ class TermsController < ApplicationController
   # GET /terms
   # GET /terms.json
   def index
-    @terms = Term.all
+    # @terms = Term.all   
+    @user = current_user
+    @terms = @user.terms
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @terms }
