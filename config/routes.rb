@@ -1,6 +1,5 @@
 Ttv4::Application.routes.draw do
-  resources :searches
-
+  get "dashboard/index"
 
   authenticated :user do
     root :to => 'home#index'
@@ -9,5 +8,4 @@ Ttv4::Application.routes.draw do
   devise_for :users
   resources :users
   resources :terms
-  resources :dashboard
 end
