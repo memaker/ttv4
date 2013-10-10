@@ -1,32 +1,12 @@
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+        	
+      <%= render :partial => 'sidebar' %>
 
-
-
-
+    </div><!--/span-->
+    
+    <div class="span9">
 
 <h2> Twitter search term </h2>
 
@@ -34,12 +14,26 @@
   <tr>
     <th>Description</th>
     <th>Keywords</th>
-<th>Last search </th>
-</tr>
+	<th>Last search</th>
+	<th></th>
+  </tr>
 <tr>
 <td><%= @term.description %></td> 
 <td><%= @term.keywords%></td>
 <td><%= @term.searched_at %></td>
+	<td>
+				
+<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Sync with Twitter</a></li>
+  </ul>
+</div>
+		
+	</td>
 </tr>
 </table>
 
@@ -64,5 +58,7 @@
   <%end%>
   </table>
 <%end%>
+</div>
+</div>
 </div>
 

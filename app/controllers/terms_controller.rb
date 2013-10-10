@@ -87,5 +87,13 @@ class TermsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def draw
+    respond_to do |format|
+      format.html # draw.html.erb
+      format.json { render json: @term }
+    end
+
+  end
 end
 
