@@ -19,6 +19,9 @@ gem 'twitter'
 gem "sexmachine" # get gender from firstname
 gem 'rufus-scheduler'
 gem 'rails_12factor' # Heroku recommended to add this gem
+# needed for graphics
+gem 'lazy_high_charts'
+
 group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform=>:ruby, :require=>"v8"
