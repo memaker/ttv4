@@ -1,4 +1,6 @@
-class TermsController < ApplicationController
+class TermsController < ApplicationController  
+  include TweetsPerHour
+  
   # GET /terms
   # GET /terms.json
   def index
@@ -19,7 +21,8 @@ class TermsController < ApplicationController
     @tweets = @term.tweets
     
     # map reduce
-    @tweets_per_hour = Tweet.build
+    @tweets_per_hour = build
+    #@tweets_per_hour = Tweet.demo
     #@chart_tweets_per_gender =
     
     # chart

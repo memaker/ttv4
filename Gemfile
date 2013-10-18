@@ -34,6 +34,7 @@ group :development do
   gem 'quiet_assets'
   gem 'pry-rails'
   gem 'awesome_print'
+  gem 'debugger' # needed for debug
 end
 group :development, :test do
   gem 'factory_girl_rails'

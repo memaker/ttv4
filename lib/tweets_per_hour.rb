@@ -5,7 +5,8 @@
 module TweetsPerHour
   
   def build
-    Tweet.map_reduce(map, reduce, :out => 'tweets_per_hour')
+    #Tweet.map_reduce(map, reduce, :out => 'tweets_per_hour')
+    Tweet.demo
   end
 
     def map
