@@ -1,6 +1,8 @@
 class Tweet
   include Mongoid::Document
   include Mongoid::Timestamps
+  include TweetsPerHour # map reduce module
+
 
   field :name, :type => String
   field :username, :type => String

@@ -19,7 +19,7 @@ class TermsController < ApplicationController
     @tweets = @term.tweets
     
     # map reduce
-    #@tweets_per_hour = MR::TweetsPerHour.new.build
+    @tweets_per_hour = Tweet.build
     #@chart_tweets_per_gender =
     
     # chart
