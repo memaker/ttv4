@@ -10,9 +10,22 @@
 
 <h2> Twitter search term </h2>
 
-<%= @chart_tweets_per_gender %>
+<div id="container_chart_tweets_per_hour" style="min-width: 310px; height: 400px; margin: 0 auto">
+	<%= high_chart(@chart_tweets_per_hour) do |c| %>
+	  <%= raw "options.tooltip.formatter = function() {return '<b> YUPI!! '+ this.point.name +'</b>: '+ this.y +' %';}" %>
+	  <%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }" %>
+ 	<% end %>
+</div>
 
-<%= high_chart("my_combine_div", @chart_tweets_per_hour) %>
+
+<%= high_chart("container_chart_tweets_per_hour_2", @chart_tweets_per_hour) do |c| %>
+  <%= raw "options.tooltip.formatter = function() {return '<b> YUPI!! '+ this.point.name +'</b>: '+ this.y +' %';}" %>
+  <%= raw "options.plotOptions.pie.dataLabels.formatter = function() { if (this.y > 5) return this.point.name; }" %>
+ <% end %>
+
+<%= high_chart("my_gender_div", @chart_tweets_per_gender) %>
+
+<%= high_chart("my_location_div", @chart_tweets_per_location) %>
 
 <table class="table table-striped">
   <tr>
