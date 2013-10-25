@@ -1,13 +1,12 @@
-class TermsController < ApplicationController  
-  include TweetsPerHour
-  
+class TermsController < ApplicationController
+
   # GET /terms
   # GET /terms.json
   def index
-    # @terms = Term.all   
+    # @terms = Term.all
     @user = current_user
     @terms = @user.terms
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @terms }
@@ -20,11 +19,42 @@ class TermsController < ApplicationController
     @term = Term.find(params[:id])
     @tweets = @term.tweets
     
-    # charts
-    @chart_tweets_per_hour = Tweet.chart_tweets_per_hour
-    @chart_tweets_per_gender = Tweet.chart_tweets_per_gender
-    @chart_tweets_per_location = Tweet.chart_tweets_per_location
+    # map reduce
+    @tweets_per_gender = Tweet.where(:term_id => @term).map_reduce(Tweet.map, Tweet.reduce).out(inline: true)
+    @chart_data = Array.new
+    @tweets_per_gender.each do |pair|
+      @chart_data.push(pair.values.to_a)
+    end
     
+    # chart generation
+    @tweets_per_gender_chart = LazyHighCharts::HighChart.new('pie') do |f|
+      f.chart({:defaultSeriesType=>"pie" , :margin=> [50, 200, 60, 170]} )
+        series = {
+          :type=> 'pie',
+          :name=> 'Browser share',
+          :data=> @chart_data
+        }
+        f.series(series)
+        f.options[:title][:text] = "THA PIE"
+        f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'}) 
+        f.plot_options(:pie=>{
+          :allowPointSelect=>true, 
+          :cursor=>"pointer" , 
+          :dataLabels=>{
+            :enabled=>true,
+            :color=>"black",
+            :style=>{
+              :font=>"13px Trebuchet MS, Verdana, sans-serif"
+            }
+          }
+        })
+    end
+
+    
+    
+    
+    
+   
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @term }
@@ -52,6 +82,7 @@ class TermsController < ApplicationController
   def create
     @term = Term.new(params[:term])
     @term.user = current_user
+    
     respond_to do |format|
       if @term.save
         format.html { redirect_to @term, notice: 'Term was successfully created.' }
@@ -83,7 +114,7 @@ class TermsController < ApplicationController
   # DELETE /terms/1.json
   def destroy
     @term = Term.find(params[:id])
-      
+
     ## it also deletes the associated tweets
     @tweets = @term.tweets
     @tweets.destroy_all
@@ -95,13 +126,13 @@ class TermsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def draw
     respond_to do |format|
       format.html # draw.html.erb
       format.json { render json: @term }
     end
-
   end
+  
 end
 
