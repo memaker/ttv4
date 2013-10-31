@@ -78,3 +78,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 h2. License
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+
+
+
+
+Añade esto en una ventana
+http://smashthemboxes.herokuapp.com/help

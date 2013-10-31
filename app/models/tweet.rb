@@ -29,7 +29,7 @@ class Tweet
 
   belongs_to :term
   
-  def self.map
+  def self.map_tweets_per_gender
     <<-EOS
     function() {
       emit(this.gender, 1);
@@ -37,7 +37,30 @@ class Tweet
     EOS
   end
 
-  def self.reduce
+  def self.reduce_tweets_per_gender
+    <<-EOS
+    function(key, values) {
+      var count = 0;
+
+      for(i in values) {
+        count += values[i]
+      }
+
+      return count;
+    }
+    EOS
+  end
+
+  def self.map_tweets_per_time
+    <<-EOS
+    function() {
+      var time = this.tweeted_at.getTime();
+      emit(time, 1);
+    }
+    EOS
+  end
+
+  def self.reduce_tweets_per_time
     <<-EOS
     function(key, values) {
       var count = 0;

@@ -10,22 +10,24 @@ module MR
     end
 
     def map
-      'function() {
+      <<-EOS
+      function() {
         emit(this.gender, 1);
-      }'
+      }
+      EOS
     end
 
     def reduce
       <<-EOS
-        function(key, values) {
-          var count = 0;
-   
-          for(i in values) {
-            count += values[i]
-          }
-   
-          return count;
+      function(key, values) {
+        var count = 0;
+  
+        for(i in values) {
+          count += values[i]
         }
+  
+        return count;
+      }
       EOS
     end
 

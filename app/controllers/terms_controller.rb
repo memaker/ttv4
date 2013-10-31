@@ -19,15 +19,13 @@ class TermsController < ApplicationController
     @term = Term.find(params[:id])
     @tweets = @term.tweets
     
-    # map reduce
-    @tweets_per_gender = Tweet.where(:term_id => @term).map_reduce(Tweet.map, Tweet.reduce).out(inline: true)
+    # tweets per gender: map reduce and chart generation
+    @tweets_per_gender = Tweet.where(:term_id => @term).map_reduce(Tweet.map_tweets_per_gender, Tweet.reduce_tweets_per_gender).out(inline: true)
     @chart_data = Array.new
     @tweets_per_gender.each do |pair|
       @chart_data.push(pair.values.to_a)
     end
-    
-    # chart generation
-    @tweets_per_gender_chart = LazyHighCharts::HighChart.new('pie') do |f|
+    @tweets_per_gender_chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.chart({:defaultSeriesType=>"pie" , :margin=> [50, 200, 60, 170]} )
         series = {
           :type=> 'pie',
@@ -35,7 +33,7 @@ class TermsController < ApplicationController
           :data=> @chart_data
         }
         f.series(series)
-        f.options[:title][:text] = "THA PIE"
+        f.options[:title][:text] = "Tweets per gender"
         f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'}) 
         f.plot_options(:pie=>{
           :allowPointSelect=>true, 
@@ -50,6 +48,32 @@ class TermsController < ApplicationController
         })
     end
 
+    # tweets per time map reduce and chart generation
+    @tweets_per_time = Tweet.where(:term_id => @term).map_reduce(Tweet.map_tweets_per_time, Tweet.reduce_tweets_per_time).out(inline: true)
+    @chart_data = Array.new
+    @tweets_per_time.each do |pair|
+      @chart_data.push(pair.values.to_a)
+    end
+    @tweets_per_time_chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.chart({:defaultSeriesType=>"spline"})
+      series = {
+        :type=> 'spline',
+        :name=> 'Tweets per time',
+        :data=> @chart_data
+      }
+      f.series(series)
+      f.options[:title][:text] = "Tweets per date and time"
+      f.options[:subtitle][:text] = "Number of tweets are rounded to the hour"
+      f.options[:xAxis] = {
+        :title => { :text => "Date and time" },
+        :type => 'datetime',
+        :dateTimeLabelFormats => { day: "%b %e"}
+        }
+      f.options[:yAxis] = {
+        :title => { :text => "Number of tweets" },
+        :min => 0
+      }
+    end
     
     
     
