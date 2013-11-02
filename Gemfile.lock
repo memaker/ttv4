@@ -112,6 +112,7 @@ GEM
     lazy_high_charts (1.4.3)
       bundler (>= 1.0)
       hash-deep-merge
+    leaflet-rails (0.6.4)
     less (2.3.2)
       commonjs (~> 0.2.6)
     less-rails (2.3.3)
@@ -266,6 +267,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   lazy_high_charts
+  leaflet-rails
   less-rails
   libv8
   minitest

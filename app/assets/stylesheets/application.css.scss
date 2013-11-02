@@ -8,6 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require leaflet
+ *= require leaflet.ie
  *= require_self
  *= require_tree .
 */
@@ -23,3 +25,6 @@
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
+
+// used for leaflet maps
+#map { height: 720px; }
