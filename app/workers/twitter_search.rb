@@ -9,38 +9,30 @@ class TwitterSearch
 
   def perform()
     Term.all.asc(:searched_at).each do |term|
-      # set some search options
       options = {:result_type => "recent"}
       options.merge(term.last_id.nil? ? {} : {:since_id => term.last_id})
-      options.merge({:lang => 'es'}) # tweets on Spanish only
-
-      # logging some information
-      Rails.logger.info "Searching for terms #{term.description} with #{search.results.size.to_s} results."
-      
-      # perform the search
+      # tweets on Spanish only
+      options.merge({:lang => 'es'})
       search = Twitter.search(term.keywords, options)
+
+      Rails.logger.info "Searching for terms #{term.description} with #{search.results.size.to_s} results."
       search.results.map do |status|
         save(status, term)
       end
-      
-      # update the term
       term.update_attributes({:last_id => search.max_id, :searched_at => DateTime.now})
     end
   end
 
   def save(status, term)
-    begin
+    begin        
         tweet = Tweet.new
         tweet.name = status.user.name
         tweet.username = status.user.name
         tweet.user_id = status.user.id
         tweet.lang = status.lang
         tweet.country_code = status.place.country_code if status.place
-        
-        # geo coordinates. Comment if they dont work
-        tweet.geo_enabled = status.user.geo_enabled
-        tweet.coordinates = status.geo.coordinates unless tweet.geo.nil?
-        
+        # tweet.geo_enabled = status.user.geo_enabled
+        # tweet.coordinates = status.coordinates
         tweet.location = status.user.location
         tweet.text = status.text
         tweet.hashtags = status.hashtags.map{|hashtag| hashtag.text}
@@ -65,4 +57,3 @@ class TwitterSearch
   end
 
 end
-

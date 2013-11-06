@@ -62,8 +62,8 @@ class TermsController < ApplicationController
         :data=> @chart_data
       }
       f.series(series)
-      f.options[:title][:text] = "Tweets per date and time"
-      f.options[:subtitle][:text] = "Number of tweets are rounded to the hour"
+      f.options[:title][:text] = "Tweets timeline"
+      f.options[:subtitle][:text] = "The number of tweets is grouped by hour"
       f.options[:xAxis] = {
         :title => { :text => "Date and time" },
         :type => 'datetime',
@@ -75,6 +75,14 @@ class TermsController < ApplicationController
       }
     end
     
+    # tweets per location map reduce and chart generation
+    @mymap = {
+      :center => {:latlng => [41.385116, 2.173423], :zoom => 12},
+      :markers => [{:latlng => [41.385116, 2.173423],
+                    :popup => "Hello!"
+                  }]
+     }
+      
     
    
     respond_to do |format|

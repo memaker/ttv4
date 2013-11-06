@@ -6,3 +6,30 @@
   <%= f.button :submit, 'Save', :class => 'btn-primary' %>
 <% end %>
 
+<ul class="unstyled">
+  <li>Available search terms:
+    <ul>
+      <li><a href="http://search.twitter.com/search?q=twitter+search">twitter search</a> - containing both "twitter" and "search". This is the default operator.</li>
+      <li><a href="http://search.twitter.com/search?q=%22happy+hour%22"><b>"</b>happy hour<b>"</b></a> - containing the exact phrase "happy hour".</li>
+      <li><a href="http://search.twitter.com/search?q=obama+OR+hillary">obama <b>OR</b> hillary</a> - containing either "obama" or "hillary" (or both).</li>
+      <li><a href="http://search.twitter.com/search?q=beer+-root">beer <b>-</b>root</a> - containing "beer" but not "root".</li>
+      <li><a href="http://search.twitter.com/search?q=%23haiku"><b>#</b>haiku</a> - containing the hashtag "haiku".</li>
+      <li><a href="http://search.twitter.com/search?q=from%3Aalexiskold"><b>from:</b>alexiskold</a> - sent from person "alexiskold".</li>
+      <li><a href="http://search.twitter.com/search?q=to%3Atechcrunch"><b>to:</b>techcrunch</a> - sent to person "techcrunch".</li>
+      <li><a href="http://search.twitter.com/search?q=%40mashable"><b>@</b>mashable</a> - referencing person "mashable".</li>
+      <li><a href="http://search.twitter.com/search?q=superhero+since%3A2008-05-01">superhero <b>since:</b>2008-05-01</a> - containing "superhero" and sent since date "2008-05-01" (year-month-day).</li>
+      <li><a href="http://search.twitter.com/search?q=ftw+until%3A2008-05-03">ftw <b>until:</b>2008-05-03</a> - containing "ftw" and sent up to date "2008-05-03".</li>
+      <li><a href="http://search.twitter.com/search?q=movie+-scary+%3A%29">movie -scary <b>:)</b></a> - containing "movie", but not "scary", and with a positive attitude.</li>
+      <li><a href="http://search.twitter.com/search?q=flight+%3A%28">flight <b>:(</b></a> - containing "flight" and with a negative attitude.</li>
+      <li><a href="http://search.twitter.com/search?q=traffic+%3F">traffic <b>?</b></a> - containing "traffic" and asking a question.</li>
+      <li><a href="http://search.twitter.com/search?q=hilarious+filter%3Alinks">hilarious <b>filter:links</b></a> - containing "hilarious" and linking to URLs.</li>
+    </ul>
+  </li>
+  <li>Additional info:
+    <ul>
+      <li>Searches are case-insenstive.</li>
+      <li>Searching for a positive attitude :) returns tweets containing the text :), =), :D, and :-)</li>
+    </ul>
+  </li>
+</ul>
+

@@ -11,8 +11,8 @@ class Tweet
   field :tweeted_at, :type => Time
   field :lang, :type =>String
   field :country_code, :type => String
-  #  field :geo_enabled, :type => Boolean
-  #  field :coordinates, :type => String
+  # field :geo_enabled, :type => Boolean
+  # field :coordinates, :type => String
   field :location, :type => String #Not found for now
   field :text, :type => String
   field :hashtags, :type => Array
@@ -54,8 +54,11 @@ class Tweet
   def self.map_tweets_per_time
     <<-EOS
     function() {
-      var time = this.tweeted_at.getTime();
-      emit(time, 1);
+      timestamp = Date.UTC(this.tweeted_at.getFullYear()
+        , this.tweeted_at.getMonth()
+        , this.tweeted_at.getDate()
+        , this.tweeted_at.getHours());
+      emit(timestamp, 1);
     }
     EOS
   end
