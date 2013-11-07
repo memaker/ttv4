@@ -16,6 +16,7 @@ class TwitterSearch
       search = Twitter.search(term.keywords, options)
 
       Rails.logger.info "Searching for terms #{term.description} with #{search.results.size.to_s} results."
+      puts "Searching for terms #{term.description} with #{search.results.size.to_s} results."
       search.results.map do |status|
         save(status, term)
       end
