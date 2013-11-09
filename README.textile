@@ -80,11 +80,14 @@ h2. License
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 h2. Heroku
-
-.- Watch the Heroku log files
 	$ heroku logs
 	$ heroku logs --tail
 	$ heroku apps:destroy still-plains-4287
+	$ heroku config
+	$ heroku config:set GITHUB_USERNAME=joesmith
+	$ heroku config:get GITHUB_USERNAME
+	$ heroku config:unset GITHUB_USERNAME
+	
 	
 	
 h2. Mongo
