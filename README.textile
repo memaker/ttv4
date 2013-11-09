@@ -79,9 +79,17 @@ h2. License
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-h2. Development notes
+h2. Heroku
 
 .- Watch the Heroku log files
 	$ heroku logs
 	$ heroku logs --tail
+	$ heroku apps:destroy still-plains-4287
+	
+	
+h2. Mongo
+
+$ mongo
+$ use ttv4
+
 
