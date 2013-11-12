@@ -15,5 +15,6 @@
 //= require twitter/bootstrap
 //= require highcharts/highstock
 //= require highcharts/highcharts-more   
-//= require leaflet                                                      
+//= require leaflet
+//= require bootstrap-datepicker
 //= require_tree .

@@ -21,6 +21,7 @@ gem 'rufus-scheduler'
 gem 'rails_12factor' # Heroku recommended to add this gem
 gem 'lazy_high_charts' # needed for graphics
 gem 'leaflet-rails' # needed for the maps
+gem 'bootstrap-datepicker-rails'
 
 group :assets do
   gem 'less-rails'

@@ -10,6 +10,7 @@
  *
  *= require leaflet
  *= require leaflet.ie
+ *= require bootstrap-datepicker
  *= require_self
  *= require_tree .
 */
@@ -28,3 +29,4 @@
 
 // used for leaflet maps
 #map { height: 720px; }
+
