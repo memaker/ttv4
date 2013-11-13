@@ -17,10 +17,12 @@ class TermsController < ApplicationController
   # GET /terms/1.json
   def show
     @term = Term.find(params[:id])
+    @from = params[:from]
+    @to = params[:to]
     @tweets = @term.tweets
     
     # tweets per gender: map reduce and chart generation
-    @tweets_per_gender = Tweet.where(:term_id => @term).map_reduce(Tweet.map_tweets_per_gender, Tweet.reduce_tweets_per_gender).out(inline: true)
+    @tweets_per_gender = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to).map_reduce(Tweet.map_tweets_per_gender, Tweet.reduce_tweets_per_gender).out(inline: true)
     @chart_data = Array.new
     @tweets_per_gender.each do |pair|
       @chart_data.push(pair.values.to_a)
@@ -49,7 +51,7 @@ class TermsController < ApplicationController
     end
 
     # tweets per time map reduce and chart generation
-    @tweets_per_time = Tweet.where(:term_id => @term).map_reduce(Tweet.map_tweets_per_time, Tweet.reduce_tweets_per_time).out(inline: true)
+    @tweets_per_time = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to).map_reduce(Tweet.map_tweets_per_time, Tweet.reduce_tweets_per_time).out(inline: true)
     @chart_data = Array.new
     @tweets_per_time.each do |pair|
       @chart_data.push(pair.values.to_a)

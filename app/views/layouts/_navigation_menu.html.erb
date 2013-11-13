@@ -18,18 +18,23 @@
 		</div>
 	</li>
 	<li>
-		<form class="navbar-form navbar-left" role="search">
+		<form class="navbar-form navbar-right" role="search">
 			<div class="input-daterange" data-behaviour='datepicker' id="datepicker">
 				<span class="add-on">from</span>
-				<input type="text" class="input-small" name="start" />
+				<input type="text" class="input-small" name="from" />
 				<span class="add-on">to</span>
-				<input type="text" class="input-small" name="end" />
+				<input type="text" class="input-small" name="to" />
 				<button type="submit" class="btn btn-default">
 					Submit
 				</button>
 				<script type="text/javascript">
 					$(document).ready(function() {
-						$('[data-behaviour~=datepicker]').datepicker();
+						$('[data-behaviour~=datepicker]').datepicker({
+							format : "dd-mm-yyyy",
+							weekStart : 1,
+							autoclose: true,
+							todayHighlight : true
+						});
 					})
 				</script>
 			</div>
