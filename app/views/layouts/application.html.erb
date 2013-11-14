@@ -1,44 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Twittermómetro" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ttv4" %>">
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title><%= content_for?(:title) ? yield(:title) : "Twittermómetro" %></title>
+		<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ttv4" %>">
+		<%= stylesheet_link_tag "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
-    <%= yield(:head) %>
-  </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-  	<div class="navbar navbar-inverse navbar-fixed-top">
-      <nav class="navbar-inner">
-        <div class="container">
-          <%= render 'layouts/navigation' %>
-        </div>
-      </nav>
-    </div>
-		<% if user_signed_in? %>
-		<div class="navbar">
-		  <nav class="navbar-inner">
-        <div class="container">
-    			<%= render 'layouts/navigation_menu' %>
-        </div>
+		<%= yield(:head) %>
+	</head>
+	<body class="<%= controller_name %> <%= action_name %>">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<nav class="navbar-inner">
+				<div class="container">
+					<%= render 'layouts/navigation' %>
+				</div>
 			</nav>
 		</div>
+		<% if user_signed_in? %>
+		<div class="navbar">
+			<nav class="navbar-inner">
+				<div class="container">
+					<%= render 'layouts/navigation_menu' %>
+				</div>
+			</nav>
+		</div>
+		<div id="main" role="main">
+			<div class="container">
+				<div class="content">
+					<div class="row">
+						<div class="span3">
+							<%= render 'layouts/left_menu' %>
+						</div>
+						<div class="span9">
+							<%= render 'layouts/messages' %>
+							<%= yield %>
+						</div>
+					</div>
+					<footer></footer>
+				</div>
+			</div>
+			<!--! end of .container -->
+		</div>
+		<!--! end of #main -->
+		<% else %>
+		<div id="main" role="main">
+			<div class="container">
+				<div class="content">
+					<div class="row">
+						<div class="span12">
+							<%= render 'layouts/messages' %>
+							<%= yield %>
+						</div>
+					</div>
+					<footer></footer>
+				</div>
+			</div>
+			<!--! end of .container -->
+		</div>
+		<!--! end of #main -->
 		<% end %>
-    <div id="main" role="main">
-      <div class="container">
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
-          </div>
-          <footer>
-          </footer>
-        </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
-  </body>
+	</body>
 </html>

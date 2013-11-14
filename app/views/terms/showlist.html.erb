@@ -1,0 +1,42 @@
+<h4>Search data</h4>
+
+<table class="table table-striped">
+	<tr>
+		<th>Description</th>
+		<th>Keywords</th>
+		<th>Last search</th>
+		<th></th>
+	</tr>
+	<tr>
+		<td><%= @term.description %></td>
+		<td><%= @term.keywords %></td>
+		<td><%= @term.searched_at %></td>
+	</tr>
+</table>
+
+<% if @tweets %>
+
+<h4>List of tweets</h4>
+
+<table class="table table-striped">
+	<tr>
+		<th>Tweeted at</th>
+		<th>User</th>
+		<th>Gender</th>
+		<th>Text</th>
+		<th>lang</th>
+		<th>Location</th>
+	</tr>
+	<% @tweets.each do |tweet| %>
+
+	<tr>
+		<td><%= tweet.tweeted_at %></td>
+		<td><%= tweet.username %></td>
+		<td><%= tweet.gender %></td>
+		<td><%= tweet.text %></td>
+		<td><%= tweet.lang %></td>
+		<td><%= tweet.location %></td>
+	</tr>
+	<% end %>
+</table>
+<% end %>

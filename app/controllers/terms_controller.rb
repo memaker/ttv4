@@ -1,5 +1,4 @@
 class TermsController < ApplicationController
-
   # GET /terms
   # GET /terms.json
   def index
@@ -20,73 +19,7 @@ class TermsController < ApplicationController
     @from = params[:from]
     @to = params[:to]
     @tweets = @term.tweets
-    
-    # tweets per gender: map reduce and chart generation
-    @tweets_per_gender = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to).map_reduce(Tweet.map_tweets_per_gender, Tweet.reduce_tweets_per_gender).out(inline: true)
-    @chart_data = Array.new
-    @tweets_per_gender.each do |pair|
-      @chart_data.push(pair.values.to_a)
-    end
-    @tweets_per_gender_chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.chart({:defaultSeriesType=>"pie" , :margin=> [50, 200, 60, 170]} )
-        series = {
-          :type=> 'pie',
-          :name=> 'Browser share',
-          :data=> @chart_data
-        }
-        f.series(series)
-        f.options[:title][:text] = "Tweets per gender"
-        f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'}) 
-        f.plot_options(:pie=>{
-          :allowPointSelect=>true, 
-          :cursor=>"pointer" , 
-          :dataLabels=>{
-            :enabled=>true,
-            :color=>"black",
-            :style=>{
-              :font=>"13px Trebuchet MS, Verdana, sans-serif"
-            }
-          }
-        })
-    end
 
-    # tweets per time map reduce and chart generation
-    @tweets_per_time = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to).map_reduce(Tweet.map_tweets_per_time, Tweet.reduce_tweets_per_time).out(inline: true)
-    @chart_data = Array.new
-    @tweets_per_time.each do |pair|
-      @chart_data.push(pair.values.to_a)
-    end
-    @tweets_per_time_chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.chart({:defaultSeriesType=>"spline"})
-      series = {
-        :type=> 'spline',
-        :name=> 'Tweets per time',
-        :data=> @chart_data
-      }
-      f.series(series)
-      f.options[:title][:text] = "Tweets timeline"
-      f.options[:subtitle][:text] = "The number of tweets is grouped by hour"
-      f.options[:xAxis] = {
-        :title => { :text => "Date and time" },
-        :type => 'datetime',
-        :dateTimeLabelFormats => { day: "%b %e"}
-        }
-      f.options[:yAxis] = {
-        :title => { :text => "Number of tweets" },
-        :min => 0
-      }
-    end
-    
-    # tweets per location map reduce and chart generation
-    @mymap = {
-      :center => {:latlng => [41.385116, 2.173423], :zoom => 12},
-      :markers => [{:latlng => [41.385116, 2.173423],
-                    :popup => "Hello!"
-                  }]
-     }
-      
-    
-   
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @term }
@@ -114,7 +47,7 @@ class TermsController < ApplicationController
   def create
     @term = Term.new(params[:term])
     @term.user = current_user
-    
+
     respond_to do |format|
       if @term.save
         format.html { redirect_to @term, notice: 'Term was successfully created.' }
@@ -159,12 +92,98 @@ class TermsController < ApplicationController
     end
   end
 
-  def draw
-    respond_to do |format|
-      format.html # draw.html.erb
-      format.json { render json: @term }
+  # GET /terms/1/showgender
+  def showgender
+    @term = Term.find(params[:id])
+    @from = params[:from]
+    @to = params[:to]
+
+    # tweets per gender: map reduce and chart generation
+    @tweets = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to).map_reduce(Tweet.map_tweets_per_gender, Tweet.reduce_tweets_per_gender).out(inline: true)
+    @chart_data = Array.new
+    @tweets.each do |pair|
+      @chart_data.push(pair.values.to_a)
+    end
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.chart({:defaultSeriesType=>"pie" , :margin=> [50, 200, 60, 170]} )
+        series = {
+          :type=> 'pie',
+          :name=> 'Browser share',
+          :data=> @chart_data
+        }
+        f.series(series)
+        f.options[:title][:text] = "Tweets per gender"
+        f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'})
+        f.plot_options(:pie=>{
+          :allowPointSelect=>true,
+          :cursor=>"pointer" ,
+          :dataLabels=>{
+            :enabled=>true,
+            :color=>"black",
+            :style=>{
+              :font=>"13px Trebuchet MS, Verdana, sans-serif"
+            }
+          }
+        })
     end
   end
+
+  # GET /terms/1/showdatetime
+  def showdatetime
+    @term = Term.find(params[:id])
+    @from = params[:from]
+    @to = params[:to]
+
+    # tweets per time map reduce and chart generation
+    @tweets = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to).map_reduce(Tweet.map_tweets_per_time, Tweet.reduce_tweets_per_time).out(inline: true)
+    @chart_data = Array.new
+    @tweets.each do |pair|
+      @chart_data.push(pair.values.to_a)
+    end
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.chart({:defaultSeriesType=>"spline"})
+      series = {
+        :type=> 'spline',
+        :name=> 'Tweets per time',
+        :data=> @chart_data
+      }
+      f.series(series)
+      f.options[:title][:text] = "Tweets timeline"
+      f.options[:subtitle][:text] = "The number of tweets is grouped by hour"
+      f.options[:xAxis] = {
+        :title => { :text => "Date and time" },
+        :type => 'datetime',
+        :dateTimeLabelFormats => { day: "%b %e"}
+        }
+      f.options[:yAxis] = {
+        :title => { :text => "Number of tweets" },
+        :min => 0
+      }
+    end
+  end
+
+  # GET /terms/1/showlocation
+  def showlocation
+    # tweets per location map reduce and chart generation
+    @map = {
+      :center => {:latlng => [41.385116, 2.173423], :zoom => 12},
+      :markers => [{:latlng => [41.385116, 2.173423],
+                    :popup => "Hello!"
+                  }]
+     }
+
+  end
   
+    # GET /terms/1/showlist
+  def showlist
+    @term = Term.find(params[:id])
+    @from = params[:from]
+    @to = params[:to]
+
+    # tweets per time map reduce and chart generation
+    @tweets = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to)
+  end
+
+
 end
 

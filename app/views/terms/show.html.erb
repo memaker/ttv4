@@ -1,74 +1,48 @@
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span3">
+<h2> Twitter search term </h2>
 
-			<%= render :partial => 'sidebar' %>
+<table class="table table-striped">
+	<tr>
+		<th>Description</th>
+		<th>Keywords</th>
+		<th>Last search</th>
+		<th></th>
+	</tr>
+	<tr>
+		<td><%= @term.description %></td>
+		<td><%= @term.keywords%></td>
+		<td><%= @term.searched_at %></td>
+		<td><!-- Single button -->
+		<div class="btn-group">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				Action <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li>
+					<a href="#">Sync with Twitter</a>
+				</li>
+			</ul>
+		</div></td>
+	</tr>
+</table>
 
-		</div><!--/span-->
+<% if @tweets %>
+<table class="table table-striped">
+	<tr>
+		<th>User</th>
+		<th>id</th>
+		<th>Text</th>
+		<th>lang</th>
+		<th>retweeted</th>
+	</tr>
+	<% @tweets.each do |tweet|%>
 
-		<div class="span9">
-
-			<h2> Twitter search term </h2>
-			
-			<%= high_chart("my_gender_div", @tweets_per_gender_chart) %>
-			
-			<br />
-			
-			<%= high_chart("my_time_id", @tweets_per_time_chart) %>
-			
-			<br />
-			
-			<%= map(@mymap) %>
-
-			<br />
-
-			<table class="table table-striped">
-				<tr>
-					<th>Description</th>
-					<th>Keywords</th>
-					<th>Last search</th>
-					<th></th>
-				</tr>
-				<tr>
-					<td><%= @term.description %></td>
-					<td><%= @term.keywords%></td>
-					<td><%= @term.searched_at %></td>
-					<td><!-- Single button -->
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-							Action <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li>
-								<a href="#">Sync with Twitter</a>
-							</li>
-						</ul>
-					</div></td>
-				</tr>
-			</table>
-
-			<% if @tweets %>
-			<table class="table table-striped">
-				<tr>
-					<th>User</th>
-					<th>id</th>
-					<th>Text</th>
-					<th>lang</th>
-					<th>retweeted</th>
-				</tr>
-				<% @tweets.each do |tweet|%>
-
-				<tr>
-					<td><%= tweet.username %></td>
-					<td><%= tweet.id %></td>
-					<td><%= tweet.text %></td>
-					<td><%= tweet.lang %></td>
-					<td><%= tweet.retweet_count %></td>
-				</tr>
-				<%end%>
-			</table>
-			<%end%>
-		</div>
-	</div>
-</div>
-
+	<tr>
+		<td><%= tweet.username %></td>
+		<td><%= tweet.id %></td>
+		<td><%= tweet.text %></td>
+		<td><%= tweet.lang %></td>
+		<td><%= tweet.retweet_count %></td>
+	</tr>
+	<%end%>
+</table>
+<%end%>
