@@ -16,9 +16,6 @@ class TermsController < ApplicationController
   # GET /terms/1.json
   def show
     @term = Term.find(params[:id])
-    @from = params[:from]
-    @to = params[:to]
-    @tweets = @term.tweets
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,19 +1,19 @@
 <div class="well sidebar-nav">
 	<ul class="nav nav-list">
 		<li class="nav-header">
-			Analysis
+			Data analysis
 		</li>
 		<li>
-			<%= link_to 'by gender', showgender_term_path %>
+			<%= link_to 'by gender', :controller => :terms, :action => :showgender %>
 		</li>
 		<li>
-			<%= link_to 'by date and time', showdatetime_term_path %>
+			<%= link_to 'by date', :controller => :terms, :action => :showdatetime %>
 		</li>
 		<li>
-			<%= link_to 'by location', showlocation_term_path %>
+			<%= link_to 'by location', :controller => :terms, :action => :showlocation %>
 		</li>
 		<li>
-			<%= link_to 'list of tweets', showlist_term_path %>
+			<%= link_to 'list of tweets', :controller => :terms, :action => :showlist %>
 		</li>
 	</ul>
 </div>
