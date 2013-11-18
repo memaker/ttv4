@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-        <% @terms.each do |term| %>
+        <% my_terms.each do |term| %>
           <tr>
           <td><%= link_to term.description, term %></td>
           <td><%= term.keywords %></td>

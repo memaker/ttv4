@@ -93,7 +93,14 @@ class TermsController < ApplicationController
   def showgender
     @term = Term.find(params[:id])
     @from = params[:from]
+    if (@from.nil?)
+      @from = "01-01-2013"
+    end
+    
     @to = params[:to]
+    if (@to.nil?)
+      @to = "31-12-2013"
+    end
 
     # tweets per gender: map reduce and chart generation
     @tweets = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to).map_reduce(Tweet.map_tweets_per_gender, Tweet.reduce_tweets_per_gender).out(inline: true)
@@ -129,7 +136,14 @@ class TermsController < ApplicationController
   def showdatetime
     @term = Term.find(params[:id])
     @from = params[:from]
+    if (@from.nil?)
+      @from = "01-01-2013"
+    end
+    
     @to = params[:to]
+    if (@to.nil?)
+      @to = "31-12-2013"
+    end
 
     # tweets per time map reduce and chart generation
     @tweets = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to).map_reduce(Tweet.map_tweets_per_time, Tweet.reduce_tweets_per_time).out(inline: true)
@@ -161,6 +175,16 @@ class TermsController < ApplicationController
 
   # GET /terms/1/showlocation
   def showlocation
+    @from = params[:from]
+    if (@from.nil?)
+      @from = "01-01-2013"
+    end
+    
+    @to = params[:to]
+    if (@to.nil?)
+      @to = "31-12-2013"
+    end
+
     # tweets per location map reduce and chart generation
     @map = {
       :center => {:latlng => [41.385116, 2.173423], :zoom => 12},
@@ -170,17 +194,24 @@ class TermsController < ApplicationController
      }
 
   end
-  
-    # GET /terms/1/showlist
+
+  # GET /terms/1/showlist
   def showlist
     @term = Term.find(params[:id])
+    
     @from = params[:from]
+    if (@from.nil?)
+      @from = "01-01-2013"
+    end
+    
     @to = params[:to]
+    if (@to.nil?)
+      @to = "31-12-2013"
+    end
 
     # tweets per time map reduce and chart generation
     @tweets = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to)
   end
-
 
 end
 
