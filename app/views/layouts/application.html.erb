@@ -25,25 +25,7 @@
 				</div>
 			</nav>
 		</div>
-		<div id="main" role="main">
-			<div class="container">
-				<div class="content">
-					<div class="row">
-						<div class="span2">
-							<%= render 'layouts/left_menu' %>
-						</div>
-						<div class="span10">
-							<%= render 'layouts/messages' %>
-							<%= yield %>
-						</div>
-					</div>
-					<footer></footer>
-				</div>
-			</div>
-			<!--! end of .container -->
-		</div>
-		<!--! end of #main -->
-		<% else %>
+		<% end %>
 		<div id="main" role="main">
 			<div class="container">
 				<div class="content">
@@ -53,12 +35,17 @@
 							<%= yield %>
 						</div>
 					</div>
-					<footer></footer>
+					<footer>
+						<div class="container">
+							<p class="muted credit">
+								<b>Twittermómetro Beta Version</b>. Please use this platform as a proof of concept. Visit our <a href="http://twittermometro.com">project site</a> and our <a href="http://blog.twittermometro.com">blog</a> for more info.
+							</p>
+						</div>
+					</footer>
 				</div>
 			</div>
 			<!--! end of .container -->
 		</div>
 		<!--! end of #main -->
-		<% end %>
 	</body>
 </html>
