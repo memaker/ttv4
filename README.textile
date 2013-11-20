@@ -102,5 +102,8 @@ h2. Git
 	$ git branch (inform about the branch)
 	$ git branch feature1 (create the branch)
 	$ git checkout feature1 (make this branch the operational one)
+	
+	Branching model
+	http://nvie.com/posts/a-successful-git-branching-model/
 
 
