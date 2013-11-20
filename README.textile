@@ -89,8 +89,6 @@ h2. Heroku
 	$ heroku config:get GITHUB_USERNAME
 	$ heroku config:unset GITHUB_USERNAME
 	
-	
-	
 h2. Mongo
 
 $ mongo
@@ -105,5 +103,50 @@ h2. Git
 	
 	Branching model
 	http://nvie.com/posts/a-successful-git-branching-model/
+	
+Twitter bootstrap pagination
+https://github.com/markbates/jquery-bootstrap-pagination
+
+Firs implementation of Classifier https://github.com/cardmagic/classifier, add to Gemfile
+gem "classifier"
+gem "stemmer"
+gem "madeleine"
+$ bundle install
+
+Implementation of Bayes Motel
+gem "bayes_motel"
+$ bundle install
+
+Upload data and generate the scaffold
+$ mongoimport -h ds049157.mongolab.com:49157 -d twittermometro -c corpus_positive -u twitteruser -p demopass --file corpus_positive.csv --type csv --headerline
+$ rails generate scaffold CorpusPositive sentence:text
+
+Upload data to mongolab
+$ mongoimport -h ds049157.mongolab.com:49157 -d twittermometro -c corpus_anews -u twitteruser -p demopass --file ANEW-Appendix.csv --type csv --headerline
+
+Upload data to development
+mongoimport -h localhost:27017 -d twittermometro_development -c corpus_anews --file ANEW-Appendix.csv --type csv --headerline
+
+Start the collector
+$ cd twittermometro/script
+$ ./tweet_collector.rb zara01_mongolab
+
+# using Rake
+rake RAILS_ENV=production cron
+
+# ejecutar rake en Heroku
+cd twittermometro
+heroku run bundle exec rake RAILS_ENV=production twitterv3:tweet_collector mass_media
+
+# 'ruby/twittermometro' is called http://murmuring-cliffs-8661.herokuapp.com/ on heroku
+# see https://devcenter.heroku.com/articles/getting-started-with-rails3
+
+# to set up environmental variables on Heroku
+$ heroku config:set TWITTER_OAUTH_TOKEN=241596263-34CuJsLeexQOZlWMPkwJXjEEU0Ij9Z4ALUN9gRqG
+$ heroku config
+
+Scaffolding para Filter
+$ rails g scaffold Filter key:string value:string type:string
+
 
 

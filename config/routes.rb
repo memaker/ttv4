@@ -1,5 +1,8 @@
 Ttv4::Application.routes.draw do
 
+  resources :filters
+
+
   authenticated :user do
     root :to => 'terms#index'
   end

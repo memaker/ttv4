@@ -22,6 +22,17 @@
 <form class="navbar-form navbar-right" role="search">
 	<ul class="nav">
 		<li>
+			<p class="nav navbar-text">
+				Filters:
+			</p>
+		</li>
+		<li>
+			<%= select("post", "location_key", Filter.where(:type => "location").collect {|p| [ p.value, p.key ] }, {include_blank: 'All'}, {prompt: 'Select location'}) %>
+		</li>
+		<li>
+			<%= select("post", "gender_key", Filter.where(:type => "gender").collect {|p| [ p.value, p.key ] }, {include_blank: 'All'}, {prompt: 'Select gender'}) %>
+		</li>
+		<li>
 			<div class="input-daterange" data-behaviour='datepicker' id="datepicker">
 				<span class="add-on">from</span>
 				<input type="text" class="input-small" name="from" value="<%= @from %>"/>

@@ -96,7 +96,7 @@ class TermsController < ApplicationController
     if (@from.nil?)
       @from = "01-01-2013"
     end
-    
+
     @to = params[:to]
     if (@to.nil?)
       @to = "31-12-2013"
@@ -134,19 +134,31 @@ class TermsController < ApplicationController
 
   # GET /terms/1/showdatetime
   def showdatetime
-    @term = Term.find(params[:id])
+    
+    @term = Term.find(params[:id])   
+    unless params[:filter][:location].nil?
+      @location = params[:filter][:location]   
+    end
+    unless params[:filter][:gender].nil?
+      @gender = params[:filter][:gender]   
+    end
     @from = params[:from]
     if (@from.nil?)
       @from = "01-01-2013"
     end
-    
     @to = params[:to]
     if (@to.nil?)
       @to = "31-12-2013"
     end
 
     # tweets per time map reduce and chart generation
-    @tweets = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to).map_reduce(Tweet.map_tweets_per_time, Tweet.reduce_tweets_per_time).out(inline: true)
+    @tweets = Tweet.where(
+      :term_id => @term,
+      :location => @location,
+      :gender => @gender,
+      :tweeted_at.gte => @from,
+      :tweeted_at.lte => @to
+      ).map_reduce(Tweet.map_tweets_per_time, Tweet.reduce_tweets_per_time).out(inline: true)
     @chart_data = Array.new
     @tweets.each do |pair|
       @chart_data.push(pair.values.to_a)
@@ -179,7 +191,7 @@ class TermsController < ApplicationController
     if (@from.nil?)
       @from = "01-01-2013"
     end
-    
+
     @to = params[:to]
     if (@to.nil?)
       @to = "31-12-2013"
@@ -198,12 +210,12 @@ class TermsController < ApplicationController
   # GET /terms/1/showlist
   def showlist
     @term = Term.find(params[:id])
-    
+
     @from = params[:from]
     if (@from.nil?)
       @from = "01-01-2013"
     end
-    
+
     @to = params[:to]
     if (@to.nil?)
       @to = "31-12-2013"
