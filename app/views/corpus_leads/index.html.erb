@@ -1,0 +1,25 @@
+<h1>Listing corpus_leads</h1>
+
+<table>
+  <tr>
+    <th>Tweet</th>
+    <th>Leadorno</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @corpus_leads.each do |corpus_lead| %>
+  <tr>
+    <td><%= corpus_lead.tweet %></td>
+    <td><%= corpus_lead.leadorno %></td>
+    <td><%= link_to 'Show', corpus_lead %></td>
+    <td><%= link_to 'Edit', edit_corpus_lead_path(corpus_lead) %></td>
+    <td><%= link_to 'Destroy', corpus_lead, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Corpus lead', new_corpus_lead_path %>

@@ -94,6 +94,23 @@ h2. Mongo
 $ mongo
 $ use ttv4
 
+Delete a collection
+> show collections
+> db.corpus_anews.drop()
+
+Upload data and generate the scaffold
+$ mongoimport -h ds049157.mongolab.com:49157 -d twittermometro -c corpus_positive -u twitteruser -p demopass --file corpus_positive.csv --type csv --headerline
+$ rails generate scaffold CorpusPositive sentence:text
+
+Upload data to mongolab
+$ mongoimport -h ds049157.mongolab.com:49157 -d twittermometro -c corpus_anews -u twitteruser -p demopass --file ANEW-Appendix.csv --type csv --headerline
+
+Upload data to development
+mongoimport -h localhost:27017 -d twittermometro_development -c corpus_anews --file ANEW-Appendix.csv --type csv --headerline
+
+For the 'tab separated values' use: --type tsv
+mongoimport -h localhost:27017 -d ttv4_development -c corpus_leads --file mycorpustsv.csv --type tsv --headerline
+
 h2. Git
 
 	$ git status
@@ -117,15 +134,6 @@ Implementation of Bayes Motel
 gem "bayes_motel"
 $ bundle install
 
-Upload data and generate the scaffold
-$ mongoimport -h ds049157.mongolab.com:49157 -d twittermometro -c corpus_positive -u twitteruser -p demopass --file corpus_positive.csv --type csv --headerline
-$ rails generate scaffold CorpusPositive sentence:text
-
-Upload data to mongolab
-$ mongoimport -h ds049157.mongolab.com:49157 -d twittermometro -c corpus_anews -u twitteruser -p demopass --file ANEW-Appendix.csv --type csv --headerline
-
-Upload data to development
-mongoimport -h localhost:27017 -d twittermometro_development -c corpus_anews --file ANEW-Appendix.csv --type csv --headerline
 
 Start the collector
 $ cd twittermometro/script
@@ -147,6 +155,49 @@ $ heroku config
 
 Scaffolding para Filter
 $ rails g scaffold Filter key:string value:string type:string
+$ rails g scaffold Anew val-mn-all:double val-sd-all:double aro-mn-all:double aro-sd-all:double dom-mn-all:double dom-sd-all:double val-mn-fem:double val-sd-fem:double aro-mn-fem:double aro-sd-fem:double dom-mn-fem:double dom-sd-fem:double val-mn-mal:double val-sd-mal:double aro-mn-mal:double aro-sd-mal:double dom-mn-mal:double dom-sd-mal:double 
+      invoke  mongoid
+      create    app/models/anew.rb
+      invoke    rspec
+      create      spec/models/anew_spec.rb
+      invoke      factory_girl
+      create        spec/factories/anews.rb
+      invoke  resource_route
+       route    resources :anews
+      invoke  scaffold_controller
+      create    app/controllers/anews_controller.rb
+      invoke    erb
+      create      app/views/anews
+      create      app/views/anews/index.html.erb
+      create      app/views/anews/edit.html.erb
+      create      app/views/anews/show.html.erb
+      create      app/views/anews/new.html.erb
+      create      app/views/anews/_form.html.erb
+      invoke    rspec
+      create      spec/controllers/anews_controller_spec.rb
+      create      spec/routing/anews_routing_spec.rb
+      invoke      rspec
+      create        spec/requests/anews_spec.rb
+      invoke    helper
+      create      app/helpers/anews_helper.rb
+      invoke      rspec
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/anews.js.coffee
+      invoke    scss
+      create      app/assets/stylesheets/anews.css.scss
+      invoke  scss
+   identical    app/assets/stylesheets/scaffolds.css.scss
+   
+$ rails destroy scaffold Anew
 
+$ rails g scaffold CorpusAnew Val-Mn-All:double Val-Sd-All:double Aro-Mn-All:double Aro-Sd-All:double Dom-Mn-All:double Dom-Sd-All:double Val-Mn-Fem:double Val-Sd-Fem:double Aro-Mn-Fem:double Aro-Sd-Fem:double Dom-Mn-Fem:double Dom-Sd-Fem:double Val-Mn-Mal:double Val-Sd-Mal:double Aro-Mn-Mal:double Aro-Sd-Mal:double Dom-Mn-Mal:double Dom-Sd-Mal:double 
+$ rails g scaffold CorpusAnew valmnall:double valsdall:double aromnall:double arosdall:double dommnall:double domsdall:double valmnfem:double valsdfem:double aromnfem:double arosdfem:double dommnfem:double domsdfem:double valmnmal:double valsdmal:double aromnmal:double arosdmal:double dommnmal:double domsdmal:double
+$ rails g scaffold CorpusAnew valmnall:decimal valsdall:decimal aromnall:decimal arosdall:decimal dommnall:decimal domsdall:decimal valmnfem:decimal valsdfem:decimal aromnfem:decimal arosdfem:decimal dommnfem:decimal domsdfem:decimal valmnmal:decimal valsdmal:decimal aromnmal:decimal arosdmal:decimal dommnmal:decimal domsdmal:decimal
+$ rails g scaffold CorpusAnew sword:string valmnall:decimal
+$ rails g scaffold CorpusLead tweet:string leadorno:string
+
+Console with IRB
+$ rails console
 
 

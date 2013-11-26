@@ -10,5 +10,5 @@ class Term
   attr_accessible :description, :keywords, :created_at, :updated_at, :searched_at, :last_id
 
   belongs_to :user
-  has_many :tweets
+  has_many :tweets  
 end

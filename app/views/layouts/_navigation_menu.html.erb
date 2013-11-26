@@ -27,10 +27,10 @@
 			</p>
 		</li>
 		<li>
-			<%= select("post", "location_key", Filter.where(:type => "location").collect {|p| [ p.value, p.key ] }, {include_blank: 'All'}, {prompt: 'Select location'}) %>
+			<%= select("post", "location", Filter.where(:type => "location").collect {|p| [ p.value, p.key ] }, {include_blank: 'All'}, {prompt: 'Select location'}) %>
 		</li>
 		<li>
-			<%= select("post", "gender_key", Filter.where(:type => "gender").collect {|p| [ p.value, p.key ] }, {include_blank: 'All'}, {prompt: 'Select gender'}) %>
+			<%= select("post", "gender", Filter.where(:type => "gender").collect {|p| [ p.value, p.key ] }, {include_blank: 'All'}, {prompt: 'Select gender'}) %>
 		</li>
 		<li>
 			<div class="input-daterange" data-behaviour='datepicker' id="datepicker">

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Tweet:</b>
+  <%= @corpus_lead.tweet %>
+</p>
+
+<p>
+  <b>Leadorno:</b>
+  <%= @corpus_lead.leadorno %>
+</p>
+
+
+<%= link_to 'Edit', edit_corpus_lead_path(@corpus_lead) %> |
+<%= link_to 'Back', corpus_leads_path %>

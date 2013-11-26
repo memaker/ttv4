@@ -1,6 +1,9 @@
 Ttv4::Application.routes.draw do
+  
+  resources :corpus_leads
 
-  resources :filters
+
+  resources :anews
 
 
   authenticated :user do
@@ -8,6 +11,8 @@ Ttv4::Application.routes.draw do
   end
   root :to => "home#index"
   devise_for :users
+  resources :corpus_anews
+  resources :filters
   resources :users
   resources :terms do
     member do

@@ -16,6 +16,7 @@ gem 'rolify'
 gem 'simple_form'
 #gem 'sidekiq'
 gem 'twitter'
+gem "classifier"
 gem "sexmachine" # get gender from firstname
 gem 'rufus-scheduler'
 gem 'rails_12factor' # Heroku recommended to add this gem

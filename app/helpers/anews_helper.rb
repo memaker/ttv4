@@ -1,0 +1,2 @@
+module AnewsHelper
+end

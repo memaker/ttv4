@@ -1,3 +1,13 @@
+<% if user_signed_in? %>
+<div class="navbar">
+	<nav class="navbar-inner">
+		<div class="container">
+			<%= render 'layouts/navigation_menu' %>
+		</div>
+	</nav>
+</div>
+<% end %>
+
 <div class="container">
 	<div class="content">
 		<div class="row">
@@ -13,7 +23,6 @@
 							<th>Description</th>
 							<th>Keywords</th>
 							<th>Last search</th>
-							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,8 +43,9 @@
 							<th width="10%">User</th>
 							<th width="10%">Gender</th>
 							<th width="50%">Text</th>
-							<th width="10%">lang</th>
+							<th width="5%">lang</th>
 							<th width="10%">Location</th>
+							<th width="5%">Lead</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -47,6 +57,7 @@
 							<td><%= tweet.text %></td>
 							<td><%= tweet.lang %></td>
 							<td><%= tweet.location %></td>
+							<td><%= tweet.lead %></td>
 						</tr>
 						<% end %>
 					</tbody>

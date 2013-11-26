@@ -1,0 +1,29 @@
+<%= simple_form_for(@anews) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :sword %>
+    <%= f.input :valmnall %>
+    <%= f.input :valsdall %>
+    <%= f.input :aromnall %>
+    <%= f.input :arosdall %>
+    <%= f.input :dommnall %>
+    <%= f.input :domsdall %>
+    <%= f.input :valmnfem %>
+    <%= f.input :valsdfem %>
+    <%= f.input :aromnfem %>
+    <%= f.input :arosdfem %>
+    <%= f.input :dommnfem %>
+    <%= f.input :domsdfem %>
+    <%= f.input :valmnmal %>
+    <%= f.input :valsdmal %>
+    <%= f.input :aromnmal %>
+    <%= f.input :arosdmal %>
+    <%= f.input :dommnmal %>
+    <%= f.input :domsdmal %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

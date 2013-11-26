@@ -1,0 +1,59 @@
+<h1>Listing anews</h1>
+
+<table>
+  <tr>
+    <th>Sword</th>
+    <th>Valmnall</th>
+    <th>Valsdall</th>
+    <th>Aromnall</th>
+    <th>Arosdall</th>
+    <th>Dommnall</th>
+    <th>Domsdall</th>
+    <th>Valmnfem</th>
+    <th>Valsdfem</th>
+    <th>Aromnfem</th>
+    <th>Arosdfem</th>
+    <th>Dommnfem</th>
+    <th>Domsdfem</th>
+    <th>Valmnmal</th>
+    <th>Valsdmal</th>
+    <th>Aromnmal</th>
+    <th>Arosdmal</th>
+    <th>Dommnmal</th>
+    <th>Domsdmal</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @anews.each do |anews| %>
+  <tr>
+    <td><%= anews.sword %></td>
+    <td><%= anews.valmnall %></td>
+    <td><%= anews.valsdall %></td>
+    <td><%= anews.aromnall %></td>
+    <td><%= anews.arosdall %></td>
+    <td><%= anews.dommnall %></td>
+    <td><%= anews.domsdall %></td>
+    <td><%= anews.valmnfem %></td>
+    <td><%= anews.valsdfem %></td>
+    <td><%= anews.aromnfem %></td>
+    <td><%= anews.arosdfem %></td>
+    <td><%= anews.dommnfem %></td>
+    <td><%= anews.domsdfem %></td>
+    <td><%= anews.valmnmal %></td>
+    <td><%= anews.valsdmal %></td>
+    <td><%= anews.aromnmal %></td>
+    <td><%= anews.arosdmal %></td>
+    <td><%= anews.dommnmal %></td>
+    <td><%= anews.domsdmal %></td>
+    <td><%= link_to 'Show', anews %></td>
+    <td><%= link_to 'Edit', edit_anews_path(anews) %></td>
+    <td><%= link_to 'Destroy', anews, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Anew', new_anews_path %>

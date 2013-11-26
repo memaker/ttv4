@@ -134,31 +134,38 @@ class TermsController < ApplicationController
 
   # GET /terms/1/showdatetime
   def showdatetime
-    
-    @term = Term.find(params[:id])   
-    unless params[:filter][:location].nil?
-      @location = params[:filter][:location]   
+
+    @term = Term.find(params[:id])
+    scope = {"term_id" => @term}
+
+    if params.has_key?("post")
+      if params["post"].has_key?("location")
+        scope = {"location" => params["post"]["location"]}
+      end
+
+      if params["post"].has_key?("gender")
+        scope = {"gender" => params[:post][:gender]}
+      end
     end
-    unless params[:filter][:gender].nil?
-      @gender = params[:filter][:gender]   
+
+    if params.has_key?(:from)
+      @from = params[:from]
+      if (@from.nil?)
+        @from = "01-01-2013"
+      end
+      scope = {:tweeted_at.gte => @from}
     end
-    @from = params[:from]
-    if (@from.nil?)
-      @from = "01-01-2013"
-    end
-    @to = params[:to]
-    if (@to.nil?)
-      @to = "31-12-2013"
+
+    if params.has_key?(:to)
+      @to = params[:to]
+      if (@to.nil?)
+        @to = "31-12-2013"
+      end
+      scope = {:tweeted_at.lte => @to}
     end
 
     # tweets per time map reduce and chart generation
-    @tweets = Tweet.where(
-      :term_id => @term,
-      :location => @location,
-      :gender => @gender,
-      :tweeted_at.gte => @from,
-      :tweeted_at.lte => @to
-      ).map_reduce(Tweet.map_tweets_per_time, Tweet.reduce_tweets_per_time).out(inline: true)
+    @tweets = Tweet.where(scope).map_reduce(Tweet.map_tweets_per_time, Tweet.reduce_tweets_per_time).out(inline: true)
     @chart_data = Array.new
     @tweets.each do |pair|
       @chart_data.push(pair.values.to_a)
@@ -210,19 +217,36 @@ class TermsController < ApplicationController
   # GET /terms/1/showlist
   def showlist
     @term = Term.find(params[:id])
+    scope = {"term_id" => @term}
 
-    @from = params[:from]
-    if (@from.nil?)
-      @from = "01-01-2013"
+    if params.has_key?("post")
+      if params["post"].has_key?("location") && !params["post"]["location"].nil?
+        scope["location"] = params["post"]["location"]
+      end
+
+      if params["post"].has_key?("gender")
+        scope["gender"] = params["post"]["gender"]
+      end
     end
 
-    @to = params[:to]
-    if (@to.nil?)
-      @to = "31-12-2013"
+    if params.has_key?("from")
+      @from = params["from"]
+      if (@from.nil?)
+        @from = "01-01-2013"
+      end
+      scope["tweeted_at.gte"] = @from
+    end
+
+    if params.has_key?("to")
+      @to = params["to"]
+      if (@to.nil?)
+        @to = "31-12-2013"
+      end
+      scope["tweeted_at.lte"] = @to
     end
 
     # tweets per time map reduce and chart generation
-    @tweets = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to)
+    @tweets = Tweet.where(scope)
   end
 
 end

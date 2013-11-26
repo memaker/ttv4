@@ -1,10 +1,39 @@
 require 'twitter'
 
 class TwitterSearch
-
   def initialize
     # gem to calculate the gender
-    @gender_detector = SexMachine::Detector.new(:case_sensitive => false)  
+    @gender_detector = SexMachine::Detector.new(:case_sensitive => false)
+
+    # classifier
+    puts "Creating the classifier for the Valence"
+    @classifier_bayes_valence = Classifier::Bayes.new '1', '2', '3', '4', '5'
+    Anew.all.each do |anew|
+      case anew.valmnall
+      when 1 .. 2
+        @classifier_bayes_valence.train_1 anew.sword
+      when 8 .. 9
+        @classifier_bayes_valence.train_5 anew.sword        
+      when 2 .. 4
+        @classifier_bayes_valence.train_2 anew.sword
+      when 6 .. 8
+        @classifier_bayes_valence.train_4 anew.sword
+      when 4 .. 6
+        @classifier_bayes_valence.train_3 anew.sword
+      end
+    end
+
+    puts "Creating the classifier for the Leads"
+    @classifier_bayes_lead = Classifier::Bayes.new 'lead', 'nolead'
+    CorpusLead.all.each do |c|
+      case c.leadorno
+      when 'l'
+        @classifier_bayes_lead.train_lead c.tweet
+      when 'n'
+        @classifier_bayes_lead.train_nolead c.tweet
+      end
+    end
+
   end
 
   def perform()
@@ -25,29 +54,38 @@ class TwitterSearch
   end
 
   def save(status, term)
-    begin        
-        tweet = Tweet.new
-        tweet.name = status.user.name
-        tweet.username = status.user.name
-        tweet.user_id = status.user.id
-        tweet.lang = status.lang
-        tweet.country_code = status.place.country_code if status.place
-        # tweet.geo_enabled = status.user.geo_enabled
-        # tweet.coordinates = status.coordinates
-        tweet.location = status.user.location
-        tweet.text = status.text
-        tweet.hashtags = status.hashtags.map{|hashtag| hashtag.text}
-        tweet.links = status.urls.map{ |url| url.url}
-        tweet.retweet_count = status.retweet_count
-        tweet.in_reply_to_screen_name = status.in_reply_to_screen_name
-        tweet.favorited = status.favorited 
-        tweet.followers = status.user.followers_count
-        tweet.friends = status.user.friends_count
-        # gender calculation
-        tweet.gender = @gender_detector.get_gender(status.user.name.split(" ").first)
-        tweet.tweeted_at = status.created_at
-        tweet.term = term
-        tweet.save
+    begin
+      tweet = Tweet.new
+      # tweet = Tweet.new(status)
+      tweet.name = status.user.name
+      tweet.username = status.user.name
+      tweet.user_id = status.user.id
+      tweet.lang = status.lang
+      tweet.country_code = status.place.country_code if status.place
+      # tweet.geo_enabled = status.user.geo_enabled
+      # tweet.coordinates = status.coordinates
+      tweet.location = status.user.location
+      tweet.text = status.text
+      tweet.hashtags = status.hashtags.map{|hashtag| hashtag.text}
+      tweet.links = status.urls.map{ |url| url.url}
+      tweet.retweet_count = status.retweet_count
+      tweet.in_reply_to_screen_name = status.in_reply_to_screen_name
+      tweet.favorited = status.favorited
+      tweet.followers = status.user.followers_count
+      tweet.friends = status.user.friends_count
+      tweet.tweeted_at = status.created_at
+
+      # gender calculation
+      tweet.gender = @gender_detector.get_gender(status.user.name.split(" ").first)
+
+      # valence calculation
+      tweet.valence = @classifier_bayes_valence.classify status.text
+
+      # lead - nolead
+      tweet.lead = @classifier_bayes_lead.classify status.text
+
+      tweet.term = term
+      tweet.save
     rescue Twitter::Error::TooManyRequests => error
       puts error.backtrace
       sleep error.rate_limit.reset_in

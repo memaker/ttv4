@@ -10,22 +10,13 @@
 		<%= yield(:head) %>
 	</head>
 	<body class="<%= controller_name %> <%= action_name %>">
-		<div class="navbar navbar-inverse navbar-fixed-top">
+		<header class="navbar navbar-inverse navbar-fixed-top">
 			<nav class="navbar-inner">
 				<div class="container">
 					<%= render 'layouts/navigation' %>
 				</div>
 			</nav>
-		</div>
-		<% if user_signed_in? %>
-		<div class="navbar">
-			<nav class="navbar-inner">
-				<div class="container">
-					<%= render 'layouts/navigation_menu' %>
-				</div>
-			</nav>
-		</div>
-		<% end %>
+		</header>
 		<div id="main" role="main">
 			<div class="container">
 				<div class="content">
@@ -37,9 +28,7 @@
 					</div>
 					<footer>
 						<div class="container">
-							<p class="muted credit">
-								<b>Twittermómetro Beta Version</b>. Please use this platform as a proof of concept. Visit our <a href="http://twittermometro.com">project site</a> and our <a href="http://blog.twittermometro.com">blog</a> for more info.
-							</p>
+							<%= render 'layouts/footer' %>
 						</div>
 					</footer>
 				</div>
