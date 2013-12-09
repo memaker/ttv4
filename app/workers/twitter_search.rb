@@ -13,7 +13,7 @@ class TwitterSearch
       when 1 .. 2
         @classifier_bayes_valence.train_1 anew.sword
       when 8 .. 9
-        @classifier_bayes_valence.train_5 anew.sword        
+        @classifier_bayes_valence.train_5 anew.sword
       when 2 .. 4
         @classifier_bayes_valence.train_2 anew.sword
       when 6 .. 8
@@ -22,7 +22,7 @@ class TwitterSearch
         @classifier_bayes_valence.train_3 anew.sword
       end
     end
-
+=begin
     puts "Creating the classifier for the Leads"
     @classifier_bayes_lead = Classifier::Bayes.new 'lead', 'nolead'
     CorpusLead.all.each do |c|
@@ -33,15 +33,28 @@ class TwitterSearch
         @classifier_bayes_lead.train_nolead c.tweet
       end
     end
+=end
+    # create new classifier instance
+    @nbayes = NBayes::Base.new
+    # train it - notice split method used to tokenize text
+    CorpusLead.all.each do |c|
+      case c.leadorno
+      when 'l'
+        @nbayes.train( c.tweet.split(/\s+/), 'lead' )
+      when 'n'
+        @nbayes.train( c.tweet.split(/\s+/), 'nolead' )
+      end
+    end
 
   end
 
   def perform()
     Term.all.asc(:searched_at).each do |term|
       options = {:result_type => "recent"}
-      options.merge(term.last_id.nil? ? {} : {:since_id => term.last_id})
+      options = options.merge(term.last_id.nil? ? {} : {:since_id => term.last_id})
       # tweets on Spanish only
-      options.merge({:lang => 'es'})
+      options = options.merge({:lang => "es"})
+      puts options
       search = Twitter.search(term.keywords, options)
 
       Rails.logger.info "Searching for terms #{term.description} with #{search.results.size.to_s} results."
@@ -82,7 +95,10 @@ class TwitterSearch
       tweet.valence = @classifier_bayes_valence.classify status.text
 
       # lead - nolead
-      tweet.lead = @classifier_bayes_lead.classify status.text
+      # tweet.lead = @classifier_bayes_lead.classify status.text
+      result = @nbayes.classify(status.text.split(/\s+/))
+      tweet.lead_data = result
+      tweet.lead = result.max_class
 
       tweet.term = term
       tweet.save

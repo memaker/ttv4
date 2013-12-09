@@ -25,6 +25,7 @@ class Tweet
   field :gender, :type =>String
   field :valence, :type =>String
   field :lead, :type =>String
+  field :lead_data, :type =>String
 
   attr_protected
   #attr_accessible :id, :term_id, :text, :lang, :user, :geo, :retweeted, :created_at, :updated_at
@@ -66,6 +67,29 @@ class Tweet
   end
 
   def self.reduce_tweets_per_time
+    <<-EOS
+    function(key, values) {
+      var count = 0;
+
+      for(i in values) {
+        count += values[i]
+      }
+
+      return count;
+    }
+    EOS
+  end
+
+  def self.map_users_per_lead
+    <<-EOS
+    function() {
+      key = {user_id: this.user_id, name: this.name};
+      emit(key, 1);
+    }
+    EOS
+  end
+
+  def self.reduce_users_per_lead
     <<-EOS
     function(key, values) {
       var count = 0;

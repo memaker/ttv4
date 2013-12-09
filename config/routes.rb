@@ -20,6 +20,7 @@ Ttv4::Application.routes.draw do
       get 'showdatetime'
       get 'showlocation'
       get 'showlist'
+      get 'showlead'
     end
   end
 end

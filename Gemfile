@@ -16,13 +16,19 @@ gem 'rolify'
 gem 'simple_form'
 #gem 'sidekiq'
 gem 'twitter'
-gem "classifier"
 gem "sexmachine" # get gender from firstname
 gem 'rufus-scheduler'
 gem 'rails_12factor' # Heroku recommended to add this gem
 gem 'lazy_high_charts' # needed for graphics
 gem 'leaflet-rails' # needed for the maps
 gem 'bootstrap-datepicker-rails'
+
+# classifier
+gem 'classifier'
+# Bayes Motel classifier
+# gem 'bayes_motel'
+# NBayes classifier https://github.com/oasic/nbayes
+gem 'nbayes'
 
 group :assets do
   gem 'less-rails'

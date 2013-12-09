@@ -249,5 +249,23 @@ class TermsController < ApplicationController
     @tweets = Tweet.where(scope)
   end
 
+  # GET /terms/1/showlead
+  def showlead
+    @term = Term.find(params[:id])
+    @from = params[:from]
+    if (@from.nil?)
+      @from = "01-01-2013"
+    end
+
+    @to = params[:to]
+    if (@to.nil?)
+      @to = "31-12-2013"
+    end
+
+    @users = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to, :lead => "lead")
+      .map_reduce(Tweet.map_users_per_lead, Tweet.reduce_users_per_lead)
+      .out(inline: true)
+  end
+
 end
 

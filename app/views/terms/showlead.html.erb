@@ -1,0 +1,49 @@
+<% if user_signed_in? %>
+<div class="navbar">
+	<nav class="navbar-inner">
+		<div class="container">
+			<%= render 'layouts/navigation_menu' %>
+		</div>
+	</nav>
+</div>
+<% end %>
+
+<div class="container">
+	<div class="content">
+		<div class="row">
+			<div class="span2">
+				<%= render :partial => 'layouts/left_menu' %>
+			</div>
+			<div class="span10">
+				<h4>Lead data</h4>
+
+				<% if @users %>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th width="50%">Name</th>
+							<th width="50%">Stars</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @users.each do |user| %>
+						<tr>
+							<td><%= user['_id']['name'] %></td>
+							<td>
+								<% (1..user['value'].to_i).each do |i| %>
+							    <%= link_to "", "", :class => 'icon-star'%>
+							  <% end %>
+								<% (user['value'].to_i..4).each do |i| %>
+							    <%= link_to "", "", :class => 'icon-star-empty'%>
+							  <% end %>
+							</td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+

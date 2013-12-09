@@ -92,7 +92,7 @@ h2. Heroku
 h2. Mongo
 
 $ mongo
-$ use ttv4
+> use ttv4
 
 Delete a collection
 > show collections
@@ -199,5 +199,9 @@ $ rails g scaffold CorpusLead tweet:string leadorno:string
 
 Console with IRB
 $ rails console
+
+How to execute scripts on the Rails environment
+# rails r app/workers/runner_twitter_search.rb
+
 
 

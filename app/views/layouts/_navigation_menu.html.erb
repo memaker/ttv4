@@ -6,7 +6,7 @@
 			</button>
 			<ul class="dropdown-menu" role="menu">
 				<% my_terms.each do |term| %>
-				<li>
+				<li class="<%= 'active' if current_page?(showlist_term_path(term.id)) %>">
 					<%= link_to term.description, showlist_term_path(term.id) %>
 				</li>
 				<% end %>
@@ -43,12 +43,9 @@
 				</button>
 				<script type="text/javascript">
 					$(document).ready(function() {
-						$('[data-behaviour~=datepicker]').datepicker({
-							format : "dd-mm-yyyy",
-							weekStart : 1,
-							autoclose : true,
-							todayHighlight : true
-						});
+					$('[data-behaviour~=datepicker]').datepicker({
+					format:"dd-mm-yyyy",weekStart:1,autoclose:true,todayHighlight:true
+					});
 					})
 				</script>
 			</div>
