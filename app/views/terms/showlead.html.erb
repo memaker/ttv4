@@ -28,7 +28,9 @@
 					<tbody>
 						<% @users.each do |user| %>
 						<tr>
-							<td><%= user['_id']['name'] %></td>
+							<td><%= link_to user['_id']['name'],
+								showuserlist_term_path(:user_id => user['_id']['user_id'].to_s, :name => user['_id']['name']) %>
+							</td>
 							<td>
 								<% (1..user['value'].to_i).each do |i| %>
 							    <%= link_to "", "", :class => 'icon-star'%>

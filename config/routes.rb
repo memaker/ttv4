@@ -21,6 +21,7 @@ Ttv4::Application.routes.draw do
       get 'showlocation'
       get 'showlist'
       get 'showlead'
+      get 'showuserlist'
     end
   end
 end

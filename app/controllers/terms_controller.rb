@@ -266,6 +266,19 @@ class TermsController < ApplicationController
       .map_reduce(Tweet.map_users_per_lead, Tweet.reduce_users_per_lead)
       .out(inline: true)
   end
+  
+    # GET /terms/1/showlead
+  def showuserlist
+    @term = Term.find(params[:id])
+   
+    # this is the user selected on the screen
+    @user = {'user_id' => params[:user_id], 'name' => params[:name]}
+    # these are the tweets: 1.- from the term 2.- from the user 3.- with positive lead
+    @tweets = Tweet.where(:term_id => @term, :user_id => @user_id, :lead => "lead")
+    debugger
+
+  end
+
 
 end
 

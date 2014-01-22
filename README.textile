@@ -106,10 +106,16 @@ Upload data to mongolab
 $ mongoimport -h ds049157.mongolab.com:49157 -d twittermometro -c corpus_anews -u twitteruser -p demopass --file ANEW-Appendix.csv --type csv --headerline
 
 Upload data to development
-mongoimport -h localhost:27017 -d twittermometro_development -c corpus_anews --file ANEW-Appendix.csv --type csv --headerline
+$ mongoimport -h localhost:27017 -d twittermometro_development -c corpus_anews --file ANEW-Appendix.csv --type csv --headerline
 
 For the 'tab separated values' use: --type tsv
-mongoimport -h localhost:27017 -d ttv4_development -c corpus_leads --file mycorpustsv.csv --type tsv --headerline
+$ mongoimport -h localhost:27017 -d ttv4_development -c corpus_leads --file mycorpustsv.csv --type tsv --headerline
+
+For the last version (from Diego)
+$ mongoimport -h ds047458.mongolab.com:47458 -d ttv4 -c corpus_leads -u twitteruser -p demopass --file 4-corpus_leads.csv --type tsv --headerline
+
+Export data
+$ mongoexport -h localhost:27017 -d ttv4_development -c filters --out /home/roberto/tmp/filters
 
 h2. Git
 
@@ -120,6 +126,9 @@ h2. Git
 	
 	Branching model
 	http://nvie.com/posts/a-successful-git-branching-model/
+	
+	Discard changes and go back to a commit
+	$ git reset --hard c56d8a3b164d9315b15af6f99527cbe620a7ad38
 	
 Twitter bootstrap pagination
 https://github.com/markbates/jquery-bootstrap-pagination
