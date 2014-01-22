@@ -91,6 +91,10 @@ h2. Heroku
 	
 h2. Mongo
 
+Start the daemon
+$ mongod
+$ mongod --repair
+
 $ mongo
 > use ttv4
 
