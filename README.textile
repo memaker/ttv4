@@ -134,6 +134,9 @@ h2. Git
 	Discard changes and go back to a commit
 	$ git reset --hard c56d8a3b164d9315b15af6f99527cbe620a7ad38
 	
+	Git on Ubuntu is 1.7.9.5, por lo que debo hacer $ git config --global push.default current.
+	The new behaviour (check the version when updated to Ubuntu 14.04) is configured by $ git config --global push.default simple
+	
 Twitter bootstrap pagination
 https://github.com/markbates/jquery-bootstrap-pagination
 
