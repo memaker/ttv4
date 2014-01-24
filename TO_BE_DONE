@@ -1,2 +1,6 @@
 1.- hacer que se mantenga la fecha en el menu
 2.- quitar el menu izquierdo
+
+Tenemos dos branch:
+ace_admin: para mejorar la template
+corpus: para mejorar los resultados del corpus
