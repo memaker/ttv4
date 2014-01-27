@@ -3,6 +3,7 @@ require 'twitter'
 class TwitterSearch
   def initialize
     # gem to calculate the gender
+    puts "Creating the gender detector"
     @gender_detector = SexMachine::Detector.new(:case_sensitive => false)
 
     # classifier
