@@ -1,2 +1,13 @@
-1.- hacer que se mantenga la fecha en el menu
-2.- quitar el menu izquierdo
+This is a reminder, no particular order in the list:
+
+.- add the new ace_admin template on tool.twittermometro.com
+.- add the main page template on twittermometro.com (probably the
+template Unify https://wrapbootstrap.com/theme/unify-responsive-website-template-WB0412697 )
+.- add the login through Twitter (to be discussed)
+.- add the possibility to add tweets to the corpus (on lead or nolead) just for the administrator (or a particular user)
+Can we define this user in an easy way?
+.- how can we include the top filters on the new template?
+.- refactor the code to improve the class division.
+.- refactor the code to separate the corpus treatment in a module? file?. this is to be able to add in the future
+other types of lead calculation.
+.- make the system multilingual (spanish and english)
