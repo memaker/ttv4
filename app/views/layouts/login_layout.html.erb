@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title><%= content_for?(:title) ? yield(:title) : "Twittermómetro" %></title>	
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ttv4" %>">  	
+	
+	<%= stylesheet_link_tag "application", :media => "all" %>	
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+	<%= yield(:head) %>
+	  	
+</head>
+
+<body class="login-layout">
+	<div class="container-fluid" id="main-container">
+		<div id="main-content">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="login-container" style="width: 425px;">
+						<div class="row-fluid">
+							<div class="center">
+								<h1>
+									<i class="icon-leaf green"></i>
+									<span class="red">Ace</span>
+									<span class="white">Application</span>
+								</h1>
+								<h4 class="blue">&copy; Company Name</h4>
+							</div>
+						</div>
+
+						<div class="space-6"></div>
+
+						<div class="row-fluid">
+							<div class="position-relative">
+								<%= yield %>							
+							</div><!--/position-relative-->
+						</div>
+					</div>
+				</div><!--/span-->
+			</div><!--/row-->
+		</div>
+	</div><!--/.fluid-container-->	
+</body>
+
+</html>
