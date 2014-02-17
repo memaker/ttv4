@@ -45,4 +45,6 @@ Ttv4::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  ENV['CLOUDMADE_API_KEY'] = '5cca72e94c8d45459987f495dfe33bc8'
 end
