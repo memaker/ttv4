@@ -17,4 +17,6 @@
 //= require highcharts/highcharts-more   
 //= require leaflet
 //= require bootstrap-datepicker
+//= require jquery.dataTables.min
+//= require jquery.dataTables.bootstrap
 //= require_tree .
