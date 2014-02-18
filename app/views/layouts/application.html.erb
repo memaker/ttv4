@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8">		
 		<title><%= content_for?(:title) ? yield(:title) : "Twittermómetro" %></title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ttv4" %>">
+		
 		<%= stylesheet_link_tag "application", :media => "all" %>
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 		<%= yield(:head) %>
 	</head>
-	<body class="<%= controller_name %> <%= action_name %>">
-		<header class="navbar navbar-inverse navbar-fixed-top">
-			<nav class="navbar-inner">
-				<div class="container">
-					<%= render 'layouts/navigation' %>
-				</div>
-			</nav>
+	<body class="<%= controller_name %> <%= action_name %>">		
+		<header class="navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<%= render 'layouts/navigation' %>					
+				</div><!--/.container-fluid-->
+			</div><!--/.navbar-inner-->
 		</header>
-		<div id="main" role="main">
+		
+		<div class="container-fluid" id="main-container">
 			<div class="container">
 				<div class="content">
 					<div class="row">
