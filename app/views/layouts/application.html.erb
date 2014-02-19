@@ -22,24 +22,16 @@
 			</div><!--/.navbar-inner-->
 		</header>
 		
-		<div class="container-fluid" id="main-container">
-			<div class="container">
-				<div class="content">
-					<div class="row">
-						<div class="span12">
-							<%= render 'layouts/messages' %>
-							<%= yield %>
-						</div>
-					</div>
-					<footer>
-						<div class="container">
-							<%= render 'layouts/footer' %>
-						</div>
-					</footer>
-				</div>
-			</div>
+		<div class="container-fluid" id="main-container">						
+			<%= render 'layouts/messages' %>
+			<%= yield %>			
 			<!--! end of .container -->
 		</div>
 		<!--! end of #main -->
+		<footer>
+			<div class="container">						
+			<%= render 'layouts/footer' %>
+			</div>						
+		</footer>
 	</body>
 </html>
