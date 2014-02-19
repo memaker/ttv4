@@ -6,6 +6,15 @@ body {
   line-height: 18px;
 }
 
+footer{
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  background-color: #000;
+  padding-top: 12px;
+  width: 100%;
+}
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -17,17 +26,6 @@ pre {
   padding: 10px;
   font-size: 11px;
 }
-
-// a {
-  // color: #000;
-  // &:visited {
-    // color: #666;
-  // }
-  // &:hover {
-    // color: #fff;
-    // background-color: #000;
-  // }
-// }
 
 div {
   &.field, &.actions {

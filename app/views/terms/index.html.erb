@@ -15,33 +15,19 @@
 		<i class="icon-double-angle-left"></i>
 	</div>
 </div>
-<div id="main-content" class="clearfix">
-	<div id="breadcrumbs">
-		<ul class="breadcrumb">
-			<li>
-				<i class="icon-home"></i>
-				<%= link_to "Home", root_path %>				
-
-				<span class="divider">
-					<i class="icon-angle-right"></i>
-				</span>
-			</li>
-			<li class="active">Terms</li>
-		</ul><!--.breadcrumb-->
-		
-		<div class="span2 pull-right">
-			<%= link_to "+ New", new_term_path, :class=>"btn" %>
-		</div>		
-	</div>
+<div id="main-content" class="clearfix">			
 	<div id="page-content" class="clearfix">
 		<div class="page-header position-relative">
-			<h1>
+			<h1 class="span9">
 				Terms
 				<small>
 					<i class="icon-double-angle-right"></i>
 					Management
 				</small>
 			</h1>
+			<div class="span2 pull-right" style="margin: 20px;">
+				<%= link_to "+ New", new_term_path, :class=>"btn" %>
+			</div>
 		</div><!--/.page-header-->
 		<div class="row-fluid">			
 			<div class="span12">
