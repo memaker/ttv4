@@ -267,7 +267,7 @@ class TermsController < ApplicationController
       .out(inline: true)
   end
   
-    # GET /terms/1/showlead
+  # GET /terms/1/showlead
   def showuserlist
     @term = Term.find(params[:id])
    
@@ -278,6 +278,20 @@ class TermsController < ApplicationController
     debugger
 
   end
+
+
+  # GET /terms/1/dashboard
+  # GET /terms.json
+  def dashboard
+    @user = current_user
+    @terms = @user.terms
+
+    respond_to do |format|
+      format.html # dashboard.html.erb
+      format.json { render json: @terms }
+    end
+  end
+
 
 
 end

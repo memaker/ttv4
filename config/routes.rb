@@ -16,6 +16,7 @@ Ttv4::Application.routes.draw do
   resources :users
   resources :terms do
     member do
+      get 'dashboard'
       get 'showgender'
       get 'showdatetime'
       get 'showlocation'

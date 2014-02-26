@@ -1,22 +1,31 @@
-<div class="well sidebar-nav">
-	<ul class="nav nav-pills nav-stacked">
-		<li class="nav-header">
-			Data analysis
-		</li>
-		<li>
-			<%= link_to 'by gender', showgender_term_path %>
-		</li>
-		<li>
-			<%= link_to 'by date', showdatetime_term_path %>
-		</li>
-		<li>
-			<%= link_to 'by location', showlocation_term_path %>
-		</li>
-		<li>
-			<%= link_to 'list of tweets', showlist_term_path %>
-		</li>
-		<li>
-			<%= link_to 'Leads', showlead_term_path %>
-		</li>
-	</ul>
+<ul class="nav nav-list">
+    <li>
+        <%= link_to raw("#{'<span>By gender</span>'}"), showgender_term_path %>
+    </li>
+    <li>
+        <%= link_to raw("#{'<span>By date</span>'}"), showdatetime_term_path %>
+    </li>
+    <li>
+        <%= link_to raw("#{'<span>By location</span>'}"), showlocation_term_path %>
+    </li>
+    <li>
+        <%= link_to raw("#{'<span>Tweets</span>'}"), showlist_term_path %>
+    </li>
+    <li>
+        <%= link_to raw("#{'<span>Leads</span>'}"), showlead_term_path %>
+    </li>
+
+    <li>
+        <a href="#">
+            <span>Help</span>
+        </a>
+    </li>
+</ul><!--/.nav-list-->
+
+<div id="sidebar-collapse">
+    <i class="icon-double-angle-left"></i>
 </div>
+
+
+
+
