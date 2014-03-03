@@ -1,62 +1,89 @@
 <div id="sidebar">
-    <%= render :partial => 'layouts/left_menu' %>
+  <%= render :partial => 'layouts/left_menu' %>
 </div>
 <div id="main-content" class="clearfix">
-	<div id="page-content" class="clearfix">
-		<div class="page-header position-relative">
-			<h1 class="span9">
-				Terms
-				<small>
-					<i class="icon-double-angle-right"></i>
-					Dashboard
-				</small>
-			</h1>
-			<div class="span2 pull-right" style="margin: 20px;">
-				<%= link_to "+ New", new_term_path, :class=>"btn" %>
-			</div>
-		</div><!--/.page-header-->
-		<div class="row-fluid">
-			<div class="span12">
-				<table id="table_report" class="table table-striped table-bordered table-hover">
-					<thead>
-						<tr>
-							<th>Description</th>
-							<th>Keywords</th>
-							<th>
-								<i class="icon-time"></i>
-								Creation date
-							</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% my_terms.each do |term| %>
-						<tr>
-							<td><%= link_to term.description, term %></td>
-							<td><%= term.keywords %></td>
-							<td><%= term.created_at.to_date %></td>
-							<td class="td-actions">
-								<div class="hidden-phone visible-desktop btn-group">
-									<%= link_to raw("#{'<i class="icon-edit bigger-120"></i>'}"), edit_term_path(term), :class => 'btn btn-mini btn-info'%>
-									<%= link_to(raw("#{'<i class="icon-trash bigger-120"></i>'}"), term_path(term), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger') %>
-									<%= link_to raw("#{'<i class="icon-flag bigger-120"></i>'}"), showlist_term_path(term), :class => 'btn btn-mini btn-warning'%>
-								</div>
-							</td>
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+  <div id="page-content" class="clearfix">
+    <div class="page-header position-relative">
+      <h1 class="span9">
+        Terms
+        <small>
+          <i class="icon-double-angle-right"></i>
+          Dashboard
+        </small>
+      </h1>
+    </div>
+    <!--/.page-header-->
+    <div class="row-fluid">
+      <div class="span12">
+        <%= render :partial => 'layouts/navigation_menu' %>
+        <div class="tabbable">
+          <ul class="nav nav-tabs" id="myTab">
+            <li class="active">
+              <a data-toggle="tab" href="#tweets">
+                <i class="green icon-home bigger-110"></i>
+                Tweets
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#datetime">
+                Datetime
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#location">
+                Location
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#gender">
+                Gender
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#leads">
+                Leads
+                <span class="badge badge-danger">4</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div id="tweets" class="tab-pane in active">
+              <p>This should contain the list of tweets, as it is described on the terms/showlist.html.erb view.</p>
+              <%= @tweets %>
+              
+
+            </div>
+
+            <div id="datetime" class="tab-pane">
+              <p>This should contain the timeline graph, as described on the showdatetime.html.erb</p>
+            </div>
+
+            <div id="location" class="tab-pane">
+              <p>This should contain the map view, as described on showlocation.html.erb </p>
+            </div>
+
+            <div id="gender" class="tab-pane">
+              <p>This should contain the gender graph as in showgender</p>
+            </div>
+
+            <div id="leads" class="tab-pane">
+              <p>This contains the list of leads</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /span -->
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
-	$(function() {
-		var oTable1 = $('#table_report').dataTable( {
-		"aoColumns": [
-	      null, null,null,
-		  { "bSortable": false }
-		] } );
-	})
+    $(function () {
+        var oTable1 = $('#table_report').dataTable({
+            "aoColumns": [
+                null, null, null,
+                { "bSortable": false }
+            ] });
+    })
 </script>
