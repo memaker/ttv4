@@ -53,7 +53,7 @@
 								<div class="hidden-phone visible-desktop btn-group">								
 									<%= link_to raw("#{'<i class="icon-edit bigger-120"></i>'}"), edit_term_path(term), :class => 'btn btn-mini btn-info'%>
 									<%= link_to(raw("#{'<i class="icon-trash bigger-120"></i>'}"), term_path(term), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger') %>
-									<%= link_to raw("#{'<i class="icon-flag bigger-120"></i>'}"), showlist_term_path(term), :class => 'btn btn-mini btn-warning'%>
+									<%= link_to raw("#{'<i class="icon-flag bigger-120"></i>'}"), dashboard_term_path(term), :class => 'btn btn-mini btn-warning'%>
 								</div>
 							</td>
 						</tr>

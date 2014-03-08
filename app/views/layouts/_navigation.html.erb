@@ -1,4 +1,8 @@
-<%= link_to raw("#{'<small><i class="icon-leaf"></i> Twittermómetro</small>'}"), root_path, :class => 'brand' %>
+<span class="fa-stack fa-lg">
+  <i class="fa fa-square-o fa-stack-2x"></i>
+  <i class="fa fa-twitter fa-stack-1x"></i>
+</span>
+<%= link_to raw("#{'<small><i class="icon-twitter"></i> Twittermómetro</small>'}"), root_path, :class => 'brand' %>
 <ul class="nav ace-nav pull-right">
 	<% if user_signed_in? %>	
 	<li class="light-blue user-profile">
