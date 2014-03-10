@@ -1,21 +1,7 @@
 <div id="sidebar">
-	<ul class="nav nav-list">
-		<li>
-			<%= link_to raw("#{'<span>Terms</span>'}"), terms_path %>			
-		</li>
-
-		<li>
-			<a href="#">				
-				<span>Help</span>
-			</a>
-		</li>		
-	</ul><!--/.nav-list-->
-
-	<div id="sidebar-collapse">
-		<i class="icon-double-angle-left"></i>
-	</div>
+  <%= render :partial => 'layouts/left_menu' %>
 </div>
-<div id="main-content" class="clearfix">			
+<div id="main-content" class="clearfix">
 	<div id="page-content" class="clearfix">
 		<div class="page-header position-relative">
 			<h1 class="span9">
