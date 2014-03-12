@@ -5,6 +5,8 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+  gem 'jquery-ui-rails'
 end
 gem 'jquery-rails'
 gem 'cancan'
@@ -16,12 +18,13 @@ gem 'rolify'
 gem 'simple_form'
 #gem 'sidekiq'
 gem 'twitter'
-gem "sexmachine" # get gender from firstname
+gem 'sexmachine' # get gender from firstname
 gem 'rufus-scheduler'
 gem 'rails_12factor' # Heroku recommended to add this gem
 gem 'lazy_high_charts' # needed for graphics
 gem 'leaflet-rails' # needed for the maps
 gem 'bootstrap-datepicker-rails'
+gem 'will_paginate'
 
 # classifier
 gem 'classifier'

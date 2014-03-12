@@ -49,10 +49,30 @@
 
           <div class="tab-content">
             <div id="tweets" class="tab-pane in active">
-              <p>This should contain the list of tweets, as it is described on the terms/showlist.html.erb view.</p>
-              <%= @tweets %>
-              
-
+              <% if @tweets %>
+                  <table id="tweetstable" class="display">
+                    <thead>
+                    <tr>
+                      <th>Tweeted at</th>
+                      <th>User</th>
+                      <th>Gender</th>
+                      <th>Text</th>
+                      <th>Lead</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @tweets.each do |tweet| %>
+                        <tr>
+                          <td><%= tweet.tweeted_at.to_date %></td>
+                          <td><%= tweet.username %></td>
+                          <td><%= tweet.gender %></td>
+                          <td><%= tweet.text %></td>
+                          <td><%= tweet.lead %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+              <% end %>
             </div>
 
             <div id="datetime" class="tab-pane">
@@ -77,13 +97,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-    $(function () {
-        var oTable1 = $('#table_report').dataTable({
-            "aoColumns": [
-                null, null, null,
-                { "bSortable": false }
-            ] });
-    })
-</script>

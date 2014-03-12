@@ -283,8 +283,8 @@ class TermsController < ApplicationController
   # GET /terms/1/dashboard
   # GET /terms.json
   def dashboard
-    @user = current_user
-    @terms = @user.terms
+    @term = Term.find(params[:id])
+    @tweets = @term.tweets
 
     respond_to do |format|
       format.html # dashboard.html.erb
