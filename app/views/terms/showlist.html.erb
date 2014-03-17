@@ -1,70 +1,69 @@
 <% if user_signed_in? %>
-<div class="navbar">
-	<nav class="navbar-inner">
-		<div class="container">
-			<%= render 'layouts/navigation_menu' %>
+<div class="row-fluid">
+	<div class="widget-box">
+		<div class="widget-header">
+			<h4>
+				Terms
+				<small>
+					<i class="icon-double-angle-right"></i>
+					Dashboard
+				</small>				
+			</h4>			
 		</div>
-	</nav>
+	
+		<div class="widget-body">
+			<div class="widget-main">
+				<%= render 'layouts/navigation_menu' %>
+			</div>
+		</div>
+	</div>
 </div>
 <% end %>
 
-<div class="container">
+<div class="row-fluid">
 	<div class="content">
-		<div class="row">
-			<div class="span2">
-				<%= render :partial => 'layouts/left_menu' %>
-			</div>
-			<div class="span10">
-				<h4>Search data</h4>
+		<ul class="nav nav-tabs">
+			<li class="active">
+				<a href="#tweets" data-toggle="tab">
+					<i class="green icon-home bigger-110"></i>
+					Tweets
+				</a>
+			</li>
+			<li>
+				<a href="#date-time" data-toggle="tab">DateTime</a>
+			</li>
+			<li>
+				<a href="#location" data-toggle="tab">Location</a>
+			</li>
+			<li>
+				<a href="#gender" data-toggle="tab">Gender</a>
+			</li>
+			<li>
+				<a href="#leads" data-toggle="tab">
+					Leads
+					<span class="badge badge-important">4</span>
+				</a>
+			</li>
+		</ul>
 
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Description</th>
-							<th>Keywords</th>
-							<th>Last search</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><%= @term.description %></td>
-							<td><%= @term.keywords %></td>
-							<td><%= @term.searched_at.to_time %></td>
-						</tr>
-					</tbody>
-				</table>
-
-				<% if @tweets %>
-				<h4>List of tweets</h4>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th width="10%">Tweeted at</th>
-							<th width="10%">User</th>
-							<th width="10%">Gender</th>
-							<th width="50%">Text</th>
-							<th width="5%">lang</th>
-							<th width="10%">Location</th>
-							<th width="5%">Lead</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% @tweets.each do |tweet| %>
-						<tr>
-							<td><%= tweet.tweeted_at.to_date %></td>
-							<td><%= tweet.username %></td>
-							<td><%= tweet.gender %></td>
-							<td><%= tweet.text %></td>
-							<td><%= tweet.lang %></td>
-							<td><%= tweet.location %></td>
-							<td><%= tweet.lead %></td>
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
-				<% end %>
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div class="tab-pane active" id="tweets">
+				<%= render 'tweets', term: @term, tweets: @tweets %>
 			</div>
-		</div>
+			<div class="tab-pane" id="date-time">
+				2
+			</div>
+			<div class="tab-pane" id="location">
+				3
+			</div>
+			<div class="tab-pane" id="gender">
+				4
+			</div>
+			<div class="tab-pane" id="leads">
+				5
+			</div>
+		</div>		
 	</div>
 </div>
 

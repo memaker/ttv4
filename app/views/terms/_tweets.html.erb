@@ -1,0 +1,55 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Description</th>
+			<th>Keywords</th>
+			<th>Last search</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= term.description %></td>
+			<td><%= term.keywords %></td>
+			<td><%= term.searched_at.to_time %></td>
+		</tr>
+	</tbody>
+</table>
+
+<% if tweets %>
+<h4>List of tweets</h4>
+<table id="table_tweets" class="table table-striped">
+	<thead>
+		<tr>
+			<th width="10%">Tweeted at</th>
+			<th width="10%">User</th>
+			<th width="10%">Gender</th>
+			<th width="50%">Text</th>
+			<th width="5%">lang</th>
+			<th width="10%">Location</th>
+			<th width="5%">Lead</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% tweets.each do |tweet| %>
+		<tr>
+			<td><%= tweet.tweeted_at.to_date %></td>
+			<td><%= tweet.username %></td>
+			<td><%= tweet.gender %></td>
+			<td><%= tweet.text %></td>
+			<td><%= tweet.lang %></td>
+			<td><%= tweet.location %></td>
+			<td><%= tweet.lead %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+	$(function() {
+		var oTable1 = $('#table_tweets').dataTable( {
+		
+		} );
+	})
+</script>
+
+<% end %>

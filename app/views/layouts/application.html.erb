@@ -33,5 +33,14 @@
 			<%= render 'layouts/footer' %>
 			</div>						
 		</footer>
+		<script type="text/javascript">
+		$(function() {
+			if($("#main-container").height() < $(window).height()) {
+				$("footer").addClass('addfooter');
+			} else {
+				$("footer").removeClass('addfooter');
+			}
+		})
+		</script>
 	</body>
 </html>
