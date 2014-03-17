@@ -6,13 +6,16 @@ body {
   line-height: 18px;
 }
 
-footer{
-  position: fixed;
-  bottom: 0;
+footer{  
   text-align: center;
   background-color: #000;
   padding-top: 12px;
   width: 100%;
+}
+
+.addfooter {
+  position: fixed;
+  bottom: 0;
 }
 
 p, ol, ul, td {
