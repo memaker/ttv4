@@ -5,3 +5,8 @@ jQuery ->
   $('#tweetstable').dataTable()
     sPaginationType: "full_numbers"
     bJQueryUI: true
+
+jQuery ->
+  $('#leadstable').dataTable()
+    sPaginationType: "full_numbers"
+    bJQueryUI: true

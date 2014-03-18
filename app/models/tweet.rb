@@ -84,7 +84,7 @@ class Tweet
     <<-EOS
     function() {
       key = {user_id: this.user_id, name: this.name};
-      emit(key, 1);
+      emit(this.name, 1);
     }
     EOS
   end

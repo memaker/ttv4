@@ -286,6 +286,11 @@ class TermsController < ApplicationController
     @term = Term.find(params[:id])
     @tweets = @term.tweets
 
+    @leads = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to, :lead => "lead")
+    .map_reduce(Tweet.map_users_per_lead, Tweet.reduce_users_per_lead)
+    .out(inline: true)
+
+
     respond_to do |format|
       format.html # dashboard.html.erb
       format.json { render json: @terms }

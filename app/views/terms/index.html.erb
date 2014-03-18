@@ -37,9 +37,9 @@
 							<td><%= term.created_at.to_date %></td>
 							<td class="td-actions">
 								<div class="hidden-phone visible-desktop btn-group">								
-									<%= link_to raw("#{'<i class="icon-edit bigger-120"></i>'}"), edit_term_path(term), :class => 'btn btn-mini btn-info'%>
-									<%= link_to(raw("#{'<i class="icon-trash bigger-120"></i>'}"), term_path(term), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger') %>
-									<%= link_to raw("#{'<i class="icon-flag bigger-120"></i>'}"), dashboard_term_path(term), :class => 'btn btn-mini btn-warning'%>
+									<%= link_to raw("#{'<i class="icon-pencil"></i>'}"), edit_term_path(term), :class => 'btn btn-mini btn-info'%>
+									<%= link_to(raw("#{'<i class="icon-trash"></i>'}"), term_path(term), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-info') %>
+									<%= link_to raw("#{'<i class="icon-search"></i>'}"), dashboard_term_path(term), :class => 'btn btn-mini btn-info'%>
 								</div>
 							</td>
 						</tr>
@@ -50,13 +50,3 @@
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript">
-	$(function() {
-		var oTable1 = $('#table_report').dataTable( {
-		"aoColumns": [	      
-	      null, null,null,
-		  { "bSortable": false }
-		] } );		
-	})
-</script>
