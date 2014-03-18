@@ -21,4 +21,6 @@
 //= require jquery.dataTables.bootstrap
 //= require ace.min
 //= require ace-elements.min
+//= require moment.min
+//= require daterangepicker.min
 //= require_tree .
