@@ -1,22 +1,4 @@
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Description</th>
-			<th>Keywords</th>
-			<th>Last search</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><%= term.description %></td>
-			<td><%= term.keywords %></td>
-			<td><%= term.searched_at.to_time %></td>
-		</tr>
-	</tbody>
-</table>
-
 <% if tweets %>
-<h4>List of tweets</h4>
 <table id="table_tweets" class="table table-striped">
 	<thead>
 		<tr>

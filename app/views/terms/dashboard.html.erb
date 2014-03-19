@@ -25,68 +25,18 @@
               </a>
             </li>
             <li>
-              <a data-toggle="tab" href="#datetime">
-                Datetime
-              </a>
-            </li>
-            <li>
-              <a data-toggle="tab" href="#location">
-                Location
-              </a>
-            </li>
-            <li>
-              <a data-toggle="tab" href="#gender">
-                Gender
-              </a>
-            </li>
-            <li>
               <a data-toggle="tab" href="#leads">
+                <i class="green icon-user bigger-110"></i>
                 Leads
-                <span class="badge badge-danger">4</span>
+                <span class="badge badge-important">4</span>
               </a>
             </li>
           </ul>
 
           <div class="tab-content">
             <div id="tweets" class="tab-pane in active">
-              <% if @tweets %>
-                  <table id="tweetstable" class="display">
-                    <thead>
-                    <tr>
-                      <th>Tweeted at</th>
-                      <th>User</th>
-                      <th>Gender</th>
-                      <th>Text</th>
-                      <th>Lead</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <% @tweets.each do |tweet| %>
-                        <tr>
-                          <td><%= tweet.tweeted_at.to_date %></td>
-                          <td><%= tweet.username %></td>
-                          <td><%= tweet.gender %></td>
-                          <td><%= tweet.text %></td>
-                          <td><%= tweet.lead %></td>
-                        </tr>
-                    <% end %>
-                    </tbody>
-                  </table>
-              <% end %>
+              <%= render 'tweets', term: @term, tweets: @tweets %>
             </div>
-
-            <div id="datetime" class="tab-pane">
-              <p>This should contain the timeline graph, as described on the showdatetime.html.erb</p>
-            </div>
-
-            <div id="location" class="tab-pane">
-              <p>This should contain the map view, as described on showlocation.html.erb </p>
-            </div>
-
-            <div id="gender" class="tab-pane">
-              <p>This should contain the gender graph as in showgender</p>
-            </div>
-
             <div id="leads" class="tab-pane">
               <%= @leads %>
             </div>

@@ -19,8 +19,6 @@
  *= require ace.min
  *= require ace-responsive.min
  *= require ace-skins.min
- *= require jquery-ui-1.10.3.custom.min
- *= require jquery-ui-1.10.3.full.min
  *= require_tree .
 */
 
@@ -38,5 +36,4 @@
 
 // used for leaflet maps
 #map { height: 720px; }
-
 
