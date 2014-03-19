@@ -284,12 +284,15 @@ class TermsController < ApplicationController
   # GET /terms.json
   def dashboard
     @term = Term.find(params[:id])
-    @tweets = @term.tweets
+    @from = params[:from]
+    @from = '01-01-2013' if (@from.nil?)
+    @to = params[:to]
+    @to = '31-12-2014' if (@to.nil?)
+    @tweets = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to)
 
-    @leads = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to, :lead => "lead")
+    @leads = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to, :lead => 'lead')
     .map_reduce(Tweet.map_users_per_lead, Tweet.reduce_users_per_lead)
     .out(inline: true)
-
 
     respond_to do |format|
       format.html # dashboard.html.erb
