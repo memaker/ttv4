@@ -8,7 +8,7 @@
       <input class="span11" type="text" name="date-range-picker" id="id-date-range-picker-1"/>
     </div>
 
-    <button class="btn btn-info" type="button">
+    <button class="btn btn-info" type="submit">
       <i class="icon-ok bigger-110"></i>
       Submit
     </button>
@@ -17,6 +17,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#id-date-range-picker-1').daterangepicker();
+        $('#id-date-range-picker-1').daterangepicker({
+            format: 'DD/MM/YYYY',
+            startDate: moment().subtract('days', 15),
+            endDate: moment()
+        });
     });
 </script>

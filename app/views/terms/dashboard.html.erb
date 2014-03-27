@@ -28,17 +28,17 @@
               <a data-toggle="tab" href="#leads">
                 <i class="green icon-user bigger-110"></i>
                 Leads
-                <span class="badge badge-important">4</span>
+                <span class="badge badge-important"><%= @leads_counter %></span>
               </a>
             </li>
           </ul>
 
           <div class="tab-content">
             <div id="tweets" class="tab-pane in active">
-              <%= render 'tweets', term: @term, tweets: @tweets %>
+              <%= render 'tweets', tweets: @tweets %>
             </div>
             <div id="leads" class="tab-pane">
-              <%= @leads %>
+              <%= render 'leads', leads: @leads %>
             </div>
           </div>
         </div>

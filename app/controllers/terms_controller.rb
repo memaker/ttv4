@@ -224,9 +224,7 @@ class TermsController < ApplicationController
         scope["location"] = params["post"]["location"]
       end
 
-      if params["post"].has_key?("gender")
-        scope["gender"] = params["post"]["gender"]
-      end
+      scope['gender'] = params['post']['gender'] if params['post'].has_key?('gender')
     end
 
     if params.has_key?("from")
@@ -285,22 +283,25 @@ class TermsController < ApplicationController
   def dashboard
     @term = Term.find(params[:id])
     @from = params[:from]
-    @from = '01-01-2013' if (@from.nil?)
+    @from = '01/01/1970' if (@from.nil?)
     @to = params[:to]
-    @to = '31-12-2014' if (@to.nil?)
+    @to = '31/12/2025' if (@to.nil?)
     @tweets = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to)
 
     @leads = Tweet.where(:term_id => @term, :tweeted_at.gte => @from, :tweeted_at.lte => @to, :lead => 'lead')
     .map_reduce(Tweet.map_users_per_lead, Tweet.reduce_users_per_lead)
     .out(inline: true)
 
+    @leads_counter = 0
+    @leads.each do |lead|
+      @leads_counter += 1
+    end
+
     respond_to do |format|
       format.html # dashboard.html.erb
       format.json { render json: @terms }
     end
   end
-
-
 
 end
 

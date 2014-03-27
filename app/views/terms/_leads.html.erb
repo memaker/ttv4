@@ -1,0 +1,27 @@
+<% if @leads %>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th width="50%">Name</th>
+        <th width="50%">Stars</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @leads.each do |lead| %>
+          <tr>
+            <td>
+              <%= lead['_id']['name'] %>
+            </td>
+            <td>
+              <% (1..lead['value'].to_i).each do |i| %>
+                  <%= link_to "", "", :class => 'icon-star' %>
+              <% end %>
+              <% (lead['value'].to_i..4).each do |i| %>
+                  <%= link_to "", "", :class => 'icon-star-empty' %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
