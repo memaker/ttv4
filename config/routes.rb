@@ -1,4 +1,10 @@
 Ttv4::Application.routes.draw do
+  namespace :api do
+    # /api/... Api::
+    namespace :v1 do
+      resources :leads
+    end
+  end
   
   resources :corpus_leads
 

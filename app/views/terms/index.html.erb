@@ -21,6 +21,7 @@
           <thead>
           <tr>
             <th>Description</th>
+            <th>API Key</th>
             <th>Keywords</th>
             <th>
               <i class="icon-time"></i>
@@ -33,6 +34,7 @@
           <% my_terms.each do |term| %>
               <tr>
                 <td><%= link_to term.description, term %></td>
+                <td><%= term.id %></td>
                 <td><%= term.keywords %></td>
                 <td><%= term.created_at.to_date %></td>
                 <td class="td-actions">
