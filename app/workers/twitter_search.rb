@@ -45,18 +45,18 @@ class TwitterSearch
           @nbayes.train(c.tweet.split(/\s+/), 'lead')
         when 'n'
           @nbayes.train(c.tweet.split(/\s+/), 'nolead')
+        else
+          # type code here
       end
     end
 
   end
 
-  def perform()
+  def perform
     Term.all.asc(:searched_at).each do |term|
       options = {:result_type => "recent"}
       options = options.merge(term.last_id.nil? ? {} : {:since_id => term.last_id})
-      # tweets on Spanish only
-      options = options.merge({:lang => "es"})
-      puts options
+      options = options.merge({:lang => "es"}) # tweets on Spanish only
       search = Twitter.search(term.keywords, options)
 
       Rails.logger.info "Searching for terms #{term.description} with #{search.results.size.to_s} results."
@@ -73,8 +73,9 @@ class TwitterSearch
       tweet = Tweet.new
       # tweet = Tweet.new(status)
 
+      tweet.user = status.user.to_json
       tweet.name = status.user.name
-      tweet.username = status.user.name
+      tweet.screen_name = status.user.screen_name
       tweet.user_id = status.user.id
       tweet.lang = status.lang
       tweet.country_code = status.place.country_code if status.place
@@ -92,7 +93,7 @@ class TwitterSearch
       tweet.tweeted_at = status.created_at
 
       # gender calculation
-      tweet.gender = @gender_detector.get_gender(status.user.name.split(" ").first)
+      tweet.gender = @gender_detector.get_gender(status.user.name.split(' ').first)
 
       # valence calculation
       tweet.valence = @classifier_bayes_valence.classify status.text

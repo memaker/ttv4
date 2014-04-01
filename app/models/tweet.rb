@@ -5,9 +5,9 @@ class Tweet
   #include TweetsPerHour
   #include TweetsPerLocation
 
-  filed
+  field :user, :type => String
   field :name, :type => String
-  field :username, :type => String
+  field :screen_name, :type => String
   field :user_id, :type => Integer
   field :tweeted_at, :type => Time
   field :lang, :type =>String
@@ -84,7 +84,7 @@ class Tweet
   def self.map_users_per_lead
     <<-EOS
     function() {
-      key = {user_id: this.user_id, name: this.name};
+      key = {user_id: this.user_id, name: this.screen_name};
       emit(key, 1);
     }
     EOS

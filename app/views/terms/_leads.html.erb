@@ -10,7 +10,7 @@
       <% @leads.each do |lead| %>
           <tr>
             <td>
-              <%= lead['_id']['name'] %>
+              <%= link_to "#{lead['_id']['name']}", "http://twitter.com/#{lead['_id']['name']}" %>
             </td>
             <td>
               <% (1..lead['value'].to_i).each do |i| %>
