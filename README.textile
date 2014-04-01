@@ -119,6 +119,12 @@ h2. Git
 	$ git branch (inform about the branch)
 	$ git branch feature1 (create the branch)
 	$ git checkout feature1 (make this branch the operational one)
+	(you modify the files and commit to the branch
+	$ git add .
+	$ git commit -m 'This is your message'
+	$ git checkout master
+	$ git merge feature1
+	$ git branch -d feature1 # delete the branch
 	
 	Branching model
 	http://nvie.com/posts/a-successful-git-branching-model/
