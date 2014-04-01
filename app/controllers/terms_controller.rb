@@ -293,9 +293,7 @@ class TermsController < ApplicationController
     .out(inline: true)
 
     @leads_counter = 0
-    @leads.each do |lead|
-      @leads_counter += 1
-    end
+    @leads.each { |lead| @leads_counter += 1 }
 
     respond_to do |format|
       format.html # dashboard.html.erb

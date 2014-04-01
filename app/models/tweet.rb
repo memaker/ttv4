@@ -5,6 +5,7 @@ class Tweet
   #include TweetsPerHour
   #include TweetsPerLocation
 
+  filed
   field :name, :type => String
   field :username, :type => String
   field :user_id, :type => Integer
