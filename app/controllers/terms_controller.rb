@@ -47,7 +47,8 @@ class TermsController < ApplicationController
 
     respond_to do |format|
       if @term.save
-        format.html { redirect_to @term, notice: 'Term was successfully created.' }
+        # format.html { redirect_to @term, notice: 'Term was successfully created.' }
+        format.html { redirect_to terms_url, notice: 'Term was successfully created.' }
         format.json { render json: @term, status: :created, location: @term }
       else
         format.html { render action: "new" }
@@ -63,7 +64,8 @@ class TermsController < ApplicationController
 
     respond_to do |format|
       if @term.update_attributes(params[:term])
-        format.html { redirect_to @term, notice: 'Term was successfully updated.' }
+        # format.html { redirect_to @term, notice: 'Term was successfully updated.' }
+        format.html { redirect_to terms_url, notice: 'Term was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,8 +80,9 @@ class TermsController < ApplicationController
     @term = Term.find(params[:id])
 
     ## it also deletes the associated tweets
-    @tweets = @term.tweets
-    @tweets.destroy_all
+    ## not needed, as the dependency is declared on the model
+    # @tweets = @term.tweets
+    # @tweets.destroy_all
 
     @term.destroy
 
