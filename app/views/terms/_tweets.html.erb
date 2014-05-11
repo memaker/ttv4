@@ -7,6 +7,7 @@
 			<th width="10%">Gender</th>
 			<th width="50%">Text</th>
 			<th width="5%">Lead</th>
+			<th width="5%">Action</th>			
 		</tr>
 	</thead>
 	<tbody>
@@ -17,6 +18,7 @@
 			<td><%= tweet.gender %></td>
 			<td><%= tweet.text %></td>
 			<td><%= tweet.lead %></td>
+			<td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		</tr>
 		<% end %>
 	</tbody>
