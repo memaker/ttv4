@@ -89,6 +89,9 @@ class TermsController < ApplicationController
     end
   end
 
+  def clean
+  end
+
   # GET /terms/1/showgender
   def showgender
     @term = Term.find(params[:id])
@@ -299,6 +302,10 @@ class TermsController < ApplicationController
       format.html # dashboard.html.erb
       format.json { render json: @terms }
     end
+  end
+
+  def clean_lead
+    Tweet.destroy.where
   end
 
 end

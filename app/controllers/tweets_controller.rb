@@ -76,8 +76,7 @@ class TweetsController < ApplicationController
     @tweet.destroy
 
     respond_to do |format|
-      format.html { redirect_to dashboard_term_path }
-      #format.html { redirect_to tweets_url }
+      format.html { redirect_to tweets_url }
       format.json { head :no_content }
     end
   end
