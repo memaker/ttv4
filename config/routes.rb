@@ -1,4 +1,14 @@
 Ttv4::Application.routes.draw do
+  resources :leads
+
+
+  resources :tweets
+
+
+  get "tweets/destroy"
+
+  get "tweet/delete"
+
   namespace :api, defaults: {format: 'json'} do
     # /api/... Api::
     namespace :v1 do
