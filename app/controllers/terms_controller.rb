@@ -92,10 +92,7 @@ class TermsController < ApplicationController
     end
   end
 
-  def clean
-  end
-
-  # GET /terms/1/showgender
+   # GET /terms/1/showgender
   def showgender
     @term = Term.find(params[:id])
     @from = params[:from]
@@ -307,9 +304,19 @@ class TermsController < ApplicationController
     end
   end
 
-  def clean_lead
-    Tweet.destroy.where
-  end
+  def delete_lead
+    @tweets = Tweet.where(screen_name: params[:screen_name])
+    @tweets.each do |tweet|
+      tweet.destroy
+    end
 
+    respond_to do |format|
+      if true
+        format.html { redirect_to dashboard_term_url, notice: 'The lead has been deleted.' }
+      else
+        format.html { redirect_to dashboard_term_url, notice: 'Error deleting the lead.' }
+      end
+    end
+  end
 end
 

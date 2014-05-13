@@ -39,6 +39,7 @@ Ttv4::Application.routes.draw do
       get 'showlist'
       get 'showlead'
       get 'showuserlist'
+      get 'delete_lead'
     end
   end
 end
