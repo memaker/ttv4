@@ -2,12 +2,12 @@
 <table id="table_tweets" class="table table-striped">
 	<thead>
 		<tr>
-			<th width="10%">Tweeted at</th>
-			<th width="10%">User</th>
-			<th width="10%">Gender</th>
-			<th width="50%">Text</th>
-			<th width="5%">Lead</th>
-			<th width="5%">Action</th>			
+			<th width="10%">Date</th>
+			<th width="5%">User</th>
+			<th width="5%">Gender</th>
+			<th width="70%">Text</th>
+			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -18,7 +18,9 @@
 			<td><%= tweet.gender %></td>
 			<td><%= tweet.text %></td>
 			<td><%= tweet.lead %></td>
-			<td><%= link_to 'Destroy', :controller => 'terms', :action => 'delete_lead', :screen_name => tweet.screen_name %></td>
+			<td>
+              <%= link_to raw("#{'<i class="icon-trash bigger-120"></i>'}"), :controller => 'terms', :action => 'delete_lead', :screen_name => tweet.screen_name, :text => tweet.text %>
+            </td>
 		</tr>
 		<% end %>
 	</tbody>
