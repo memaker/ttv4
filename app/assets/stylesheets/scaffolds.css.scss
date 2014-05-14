@@ -6,6 +6,18 @@ body {
   line-height: 18px;
 }
 
+footer{
+  text-align: center;
+  background-color: #62a8d1;
+  padding-top: 12px;
+  width: 100%;
+}
+
+.addfooter {
+  position: fixed;
+  bottom: 0;
+}
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
