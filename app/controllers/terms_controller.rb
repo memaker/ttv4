@@ -4,7 +4,12 @@ class TermsController < ApplicationController
   def index
     # @terms = Term.all
     @user = current_user
-    @terms = @user.terms
+    if (@user.name == 'admin') then
+      @terms = Term.all
+    else
+      @terms = @user.terms
+    end
+    # @terms = @user.terms
 
     respond_to do |format|
       format.html # index.html.erb

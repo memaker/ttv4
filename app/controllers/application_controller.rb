@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   
   def my_terms
     @user = current_user
-    @user.terms
+    (@user.name == 'admin') ? Term.all : @user.terms
   end
 
 end
