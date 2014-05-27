@@ -45,4 +45,6 @@ Ttv4::Application.routes.draw do
       get 'delete_lead'
     end
   end
+
+  match '/help' => 'pages#help'
 end

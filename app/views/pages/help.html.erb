@@ -1,0 +1,40 @@
+<div id="sidebar">
+  <%= render :partial => 'layouts/left_menu' %>
+</div>
+<div id="main-content" class="clearfix">
+  <div id="page-content" class="clearfix">
+    <div class="page-header position-relative">
+      <h1 class="span9">
+        Help page
+        <small>
+          <i class="icon-double-angle-right"></i>
+          How to start working with Twittermómetro
+        </small>
+      </h1>
+    </div>
+    <!--/.page-header-->
+    <div class="row-fluid">
+      <div class="span12">
+        <h4 class="header blue">
+          How to create a Term
+        </h4>
+        <p>'Term' is just the word we use to define a search on Twitter. To create a new term just click
+          on the 'Terms' link on the left menu, and then on '+ New' button.</p>
+        <p>You will be asked for a description and a list of keywords. On the bottom of the page you can find some guidelines to
+          better compose the list of keywords. After saving the term it will appear on the 'Terms' table.</p>
+        <p>For each term there are three icons on its right that provide some functionality. Using the icons
+        you should be able to either edit, delete or consult the search results. The search results are the list of tweets that match the keywords criteria and the list of 'leads' - potential
+          clients associated with this term. If you click on the lead's name you will be redirected to his/her Twitter page.</p>
+        <h4 class="header blue">
+          How to use the JSON API
+        </h4>
+        <p>Twittermómetro can also be used using web services. In order to do so, create your term as described above and then
+        ask for the results using the JSON API. Your application can access this API using a URL similar to:</p>
+        <p class="bolder">http://tool.twittermometro.com/api/v2/leads?id=this_is_the_term_id</p>
+        <p>The term id (a long string similar to 538066ae706cb987e9000002) is the identifier of the
+        term you want to consult. You can find this code on the terms table.</p>
+        <p>The JSON API returns the list of leads and their associated tweets.</p>
+      </div>
+    </div>
+  </div>
+</div>
