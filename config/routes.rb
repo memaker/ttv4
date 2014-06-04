@@ -29,6 +29,7 @@ Ttv4::Application.routes.draw do
     root :to => 'terms#index'
   end
   root :to => "home#index"
+
   devise_for :users
   resources :corpus_anews
   resources :filters

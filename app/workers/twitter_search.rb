@@ -57,7 +57,7 @@ class TwitterSearch
       options = {:result_type => "recent"}
       options = options.merge(term.last_id.nil? ? {} : {:since_id => term.last_id})
       options = options.merge({lang: 'es'}) # tweets on Spanish only
-      options = options.merge({geocode: '40.416480,-3.697858,600mi'}) # tweets from Spain only
+      # options = options.merge({geocode: '40.416480,-3.697858,600mi'}) # tweets from Spain only
       search = Twitter.search(term.keywords, options)
 
       Rails.logger.info "Searching for terms #{term.description} with #{search.results.size.to_s} results."
