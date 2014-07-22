@@ -27,6 +27,7 @@ class Tweet
   field :valence, :type =>String
   field :lead, :type =>String
   field :lead_data, :type =>String
+  field :google_lead, :type =>String
 
   attr_protected
   #attr_accessible :id, :term_id, :text, :lang, :user, :geo, :retweeted, :created_at, :updated_at

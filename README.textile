@@ -119,6 +119,7 @@ h2. Git
 	$ git branch (inform about the branch)
 	$ git branch feature1 (create the branch)
 	$ git checkout feature1 (make this branch the operational one)
+	(note: git checkout -b feature1 ) is identical
 	(you modify the files and commit to the branch
 	$ git add .
 	$ git commit -m 'This is your message'

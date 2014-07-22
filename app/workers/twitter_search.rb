@@ -1,4 +1,5 @@
 require 'twitter'
+require 'google_predictor'
 
 class TwitterSearch
   def initialize
@@ -50,6 +51,10 @@ class TwitterSearch
       end
     end
 
+    # Roberto 2014-07-04 Added the Google Prediction API
+    @prediction = Prediction.new
+    @prediction.configure
+    # how to predict: @prediction.predict('recomendar pienso para perros')
   end
 
   def perform
@@ -103,6 +108,9 @@ class TwitterSearch
       result = @nbayes.classify(status.text.split(/\s+/))
       tweet.lead_data = result
       tweet.lead = result.max_class # lead - nolead
+
+      # Roberto 2014-07-04 Adding Google Prediction API
+      tweet.google_lead = @prediction.predict(status.text)
 
       # associated term
       tweet.term = term

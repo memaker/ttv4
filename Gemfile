@@ -8,6 +8,7 @@ group :assets do
   gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
   gem 'jquery-ui-rails'
 end
+gem 'google-api-client', '>= 0.6'
 gem 'jquery-rails'
 gem 'cancan'
 gem 'devise'
