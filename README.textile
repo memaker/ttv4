@@ -146,6 +146,8 @@ Implementation of Bayes Motel
 gem "bayes_motel"
 $ bundle install
 
+Actualizar una gem y sus dependencias
+$ bundle update jwt
 
 Start the collector
 $ cd twittermometro/script
